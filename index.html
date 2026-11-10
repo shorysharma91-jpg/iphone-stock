@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>iPhone Stock</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--tx:#1b1f24;--mu:#6b7280;--bd:#e5e7eb;--ac:#2563eb;--ok:#15803d;--warn:#b45309;--bad:#b91c1c;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#111318;--card:#1c1f26;--tx:#eceef2;--mu:#9aa1ad;--bd:#2b303a;--ac:#6ea0ff;--ok:#4ade80;--warn:#fbbf24;--bad:#f87171;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#111318;--card:#1c1f26;--tx:#eceef2;--mu:#9aa1ad;--bd:#2b303a;--ac:#6ea0ff;--ok:#4ade80;--warn:#fbbf24;--bad:#f87171;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:560px;margin:0 auto;padding:12px 14px 96px}
+header{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:4px 0 12px}
+h1{font-size:20px;margin:0}
+h3{font-size:13px;margin:16px 0 0;color:var(--mu);text-transform:uppercase;letter-spacing:.04em}
+.tag{font-size:12px;color:var(--mu)}
+button,input,select,textarea{font:inherit;color:inherit}
+.btn{background:var(--ac);color:#fff;border:0;border-radius:10px;padding:10px 14px;font-weight:600;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--ac);border:1px solid var(--bd)}
+.btn.danger{background:var(--bad)}
+input,select,textarea{width:100%;background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:11px 12px}
+textarea{min-height:64px;resize:vertical}
+label{display:block;font-size:13px;color:var(--mu);margin:10px 0 4px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:12px 14px;margin-bottom:10px;cursor:pointer}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.name{font-weight:600}
+.sub{font-size:13px;color:var(--mu)}
+.price{font-weight:700;font-size:18px}
+.pill{font-size:12px;font-weight:600;border-radius:99px;padding:2px 9px;border:1px solid currentColor;margin-right:4px;display:inline-block}
+.ok{color:var(--ok)}.low{color:var(--warn)}.out{color:var(--bad)}
+.grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px}
+.stat{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:10px}
+.stat b{display:block;font-size:15px}
+.det{margin-top:10px;border-top:1px solid var(--bd);padding-top:8px}
+.det div{display:flex;justify-content:space-between;gap:12px;padding:4px 0;font-size:14px}
+.det span:first-child{color:var(--mu);flex-shrink:0}
+.det span:last-child{text-align:right;word-break:break-word}
+.priv{margin-top:8px;padding:8px 10px;border:1px dashed var(--bd);border-radius:10px}
+.fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));border-radius:99px;padding:14px 20px;box-shadow:0 4px 14px rgba(0,0,0,.25)}
+.sheet{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:flex-end;justify-content:center;z-index:20}
+.sheet.on{display:flex}
+.panel{background:var(--bg);width:100%;max-width:560px;max-height:92%;overflow:auto;border-radius:18px 18px 0 0;padding:16px 16px calc(16px + env(safe-area-inset-bottom,0px))}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.err{color:var(--bad);font-size:13px;min-height:18px;margin-top:6px}
+.empty{text-align:center;color:var(--mu);padding:30px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div><h1>iPhone Stock</h1><div class="tag" id="modeTag">Public view</div></div>
+    <button class="btn ghost" id="authBtn">Admin login</button>
+  </header>
+  <div id="stats"></div>
+  <input id="q" type="search" placeholder="Search model, storage, colour…" style="margin-bottom:12px">
+  <div id="list"><div class="empty">Loading… the first visit after a quiet spell can take up to a minute.</div></div>
+</div>
+<button class="btn fab" id="addBtn" style="display:none">+ Add iPhone</button>
+
+<div class="sheet" id="loginSheet"><div class="panel">
+  <h2 style="margin:0 0 4px" id="loginTitle">Admin login</h2>
+  <div class="sub" id="loginHint"></div>
+  <label>Password</label><input id="pw" type="password" autocomplete="current-password">
+  <div id="pw2wrap" style="display:none"><label>Confirm password</label><input id="pw2" type="password"></div>
+  <div class="err" id="loginErr"></div>
+  <div class="row" style="margin-top:8px"><button class="btn ghost" data-close="loginSheet">Cancel</button><button class="btn" id="loginGo">Continue</button></div>
+</div></div>
+
+<div class="sheet" id="formSheet"><div class="panel">
+  <h2 style="margin:0" id="formTitle">Add iPhone</h2>
+  <h3>Phone</h3>
+  <label>Model</label><input id="fModel" list="models" placeholder="e.g. iPhone 15 Pro">
+  <datalist id="models"></datalist>
+  <div class="two">
+    <div><label>Storage</label><select id="fStorage"><option>64GB</option><option>128GB</option><option>256GB</option><option>512GB</option><option>1TB</option></select></div>
+    <div><label>Colour</label><input id="fColor"></div>
+    <div><label>Condition</label><select id="fCond"><option>New</option><option>Refurbished</option><option>Used</option></select></div>
+    <div><label>Status</label><select id="fStatus"><option>Available</option><option>Sold</option></select></div>
+  </div>
+  <h3>Details shown to buyers</h3>
+  <div class="two">
+    <div><label>Battery health (%)</label><input id="fBat" type="number" inputmode="numeric" min="1" max="100"></div>
+    <div><label>First used on</label><input id="fFirst" type="date"></div>
+    <div><label>Warranty valid till</label><input id="fWar" type="date"></div>
+    <div><label>Screen / body</label><select id="fBody"><option value="">—</option><option>Like new</option><option>Good</option><option>Minor scratches</option><option>Visible wear</option><option>Cracked</option></select></div>
+  </div>
+  <label>Repairs / parts changed</label><input id="fRepair" placeholder="e.g. All original, screen replaced">
+  <label>Comes with</label><input id="fInc" placeholder="e.g. Box, charger, bill">
+  <label>Notes for buyers</label><textarea id="fNotes"></textarea>
+  <h3>Private (admin only)</h3>
+  <label>IMEI / serial</label><input id="fIMEI">
+  <div class="two">
+    <div><label>Bought from</label><input id="fFrom"></div>
+    <div><label>Bought on</label><input id="fBought" type="date"></div>
+    <div><label>Purchase cost (₹)</label><input id="fCost" type="number" inputmode="decimal" min="0"></div>
+    <div><label>Selling price (₹)</label><input id="fSell" type="number" inputmode="decimal" min="0"></div>
+  </div>
+  <label>Private notes</label><textarea id="fPriv"></textarea>
+  <div class="err" id="formErr"></div>
+  <div class="row" style="margin-top:8px;flex-wrap:wrap">
+    <button class="btn danger" id="delBtn" style="display:none">Delete</button>
+    <span style="flex:1"></span>
+    <button class="btn ghost" data-close="formSheet">Cancel</button>
+    <button class="btn" id="saveBtn">Save</button>
+  </div>
+</div></div>
+
+<script>
+var TOKEN=null,admin=false,editId=null,openId=null,items=[];
+try{TOKEN=sessionStorage.getItem('tok');admin=!!TOKEN}catch(e){}
+async function api(method,url,body){
+  var h={'Content-Type':'application/json'};if(TOKEN)h.Authorization='Bearer '+TOKEN;
+  var r=await fetch(url,{method:method,headers:h,body:body?JSON.stringify(body):undefined});
+  var j={};try{j=await r.json()}catch(e){}
+  if(r.status===401&&TOKEN){logout();throw new Error('Session expired. Please log in again.')}
+  if(!r.ok)throw new Error(j.error||'Request failed');
+  return j;
+}
+async function refresh(){
+  try{items=await api('GET',admin?'/api/admin/phones':'/api/phones')}
+  catch(e){if(!admin)$('list').innerHTML='<div class="empty">Could not load. Please try again in a moment.</div>';return}
+  render();
+}
+function logout(){TOKEN=null;admin=false;openId=null;try{sessionStorage.removeItem('tok')}catch(e){}refresh()}
+var MODELS=['iPhone 11','iPhone 12','iPhone 12 Pro','iPhone 13','iPhone 13 Pro','iPhone 13 Pro Max','iPhone 14','iPhone 14 Plus','iPhone 14 Pro','iPhone 14 Pro Max','iPhone 15','iPhone 15 Plus','iPhone 15 Pro','iPhone 15 Pro Max','iPhone 16','iPhone 16 Plus','iPhone 16 Pro','iPhone 16 Pro Max','iPhone 16e','iPhone 17','iPhone 17 Pro','iPhone 17 Pro Max','iPhone SE (3rd gen)'];
+var $=function(id){return document.getElementById(id)};
+$('models').innerHTML=MODELS.map(function(m){return '<option value="'+m+'">'}).join('');
+var inr=function(n){return '₹'+Number(n||0).toLocaleString('en-IN',{maximumFractionDigits:2})};
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function fd(d){if(!d)return '';var x=new Date(d+'T00:00:00');return isNaN(x)?'':x.toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'})}
+function dr(l,v){return v?'<div><span>'+l+'</span><span>'+esc(v)+'</span></div>':''}
+function batCls(b){return b>=85?'ok':b>=75?'low':'out'}
+
+function render(){
+  var term=$('q').value.trim().toLowerCase();
+  var list=items.filter(function(i){return [i.model,i.storage,i.color,i.cond].join(' ').toLowerCase().indexOf(term)>-1});
+  list.sort(function(a,b){return (a.status==='Sold')-(b.status==='Sold')});
+  $('modeTag').textContent=admin?'Admin view':'Public view';
+  $('authBtn').textContent=admin?'Log out':'Admin login';
+  $('addBtn').style.display=admin?'block':'none';
+  var st='';
+  if(admin){
+    var n=0,cost=0,profit=0;
+    items.forEach(function(i){if(i.status!=='Sold'){n++;cost+=i.cost;profit+=i.sell-i.cost}});
+    st='<div class="grid"><div class="stat"><span class="sub">Available</span><b>'+n+'</b></div>'+
+       '<div class="stat"><span class="sub">Money invested</span><b>'+inr(cost)+'</b></div>'+
+       '<div class="stat"><span class="sub">Exp. profit</span><b>'+inr(profit)+'</b></div></div>';
+  }
+  $('stats').innerHTML=st;
+  if(!list.length){$('list').innerHTML='<div class="empty">No iPhones found.</div>';return}
+  $('list').innerHTML=list.map(function(i){
+    var sold=i.status==='Sold';
+    var h='<div class="card" data-id="'+i.id+'" style="'+(sold?'opacity:.65':'')+'"><div class="row"><div><div class="name">'+esc(i.model)+'</div>'+
+      '<div class="sub">'+esc(i.storage)+' · '+esc(i.color||'—')+' · '+esc(i.cond)+'</div>'+
+      '<div style="margin-top:4px">'+(sold?'<span class="pill out">Sold</span>':'<span class="pill ok">Available</span>')+
+      (i.bat?'<span class="pill '+batCls(i.bat)+'">Battery '+i.bat+'%</span>':'')+'</div></div>'+
+      '<div class="price">'+inr(i.sell)+'</div></div>';
+    if(admin){
+      var m=i.sell>0?((i.sell-i.cost)/i.sell*100):0;
+      h+='<div class="row sub" style="margin-top:8px;border-top:1px solid var(--bd);padding-top:8px"><span>Cost '+inr(i.cost)+'</span><span>Profit '+inr(i.sell-i.cost)+'</span><span style="color:'+(m<0?'var(--bad)':'var(--ok)')+'">'+m.toFixed(1)+'%</span></div>';
+    }
+    if(openId===i.id){
+      h+='<div class="det">'+dr('Battery health',i.bat?i.bat+'%':'')+dr('First used',fd(i.first))+dr('Warranty till',fd(i.war))+dr('Screen / body',i.body)+dr('Repairs / parts',i.repair)+dr('Comes with',i.inc)+dr('Notes',i.notes)+'</div>';
+      if(admin){
+        h+='<div class="priv sub">'+dr('IMEI / serial',i.imei)+dr('Bought from',i.from)+dr('Bought on',fd(i.bought))+dr('Private notes',i.priv)+'</div>'+
+           '<div style="margin-top:10px"><button class="btn ghost" data-edit="'+i.id+'">Edit this phone</button></div>';
+      }
+    }
+    return h+'</div>';
+  }).join('');
+}
+
+function open(id){$(id).classList.add('on')}
+function close(id){$(id).classList.remove('on')}
+document.querySelectorAll('[data-close]').forEach(function(b){b.onclick=function(){close(b.dataset.close)}});
+
+$('authBtn').onclick=function(){
+  if(admin){logout();return}
+  $('loginTitle').textContent='Admin login';$('loginHint').textContent='Enter your admin password.';
+  $('pw').value='';$('loginErr').textContent='';
+  open('loginSheet');$('pw').focus();
+};
+$('loginGo').onclick=async function(){
+  try{
+    var r=await api('POST','/api/login',{password:$('pw').value});
+    TOKEN=r.token;admin=true;try{sessionStorage.setItem('tok',TOKEN)}catch(e){}
+    close('loginSheet');refresh();
+  }catch(e){$('loginErr').textContent=e.message}
+};
+$('pw').onkeydown=function(e){if(e.key==='Enter')$('loginGo').click()};
+$('q').oninput=render;
+
+var F={model:'fModel',storage:'fStorage',color:'fColor',cond:'fCond',status:'fStatus',bat:'fBat',first:'fFirst',war:'fWar',body:'fBody',repair:'fRepair',inc:'fInc',notes:'fNotes',imei:'fIMEI',from:'fFrom',bought:'fBought',cost:'fCost',sell:'fSell',priv:'fPriv'};
+function openForm(id){
+  editId=id;var i=items.find(function(x){return x.id===id})||{storage:'128GB',cond:'Used',status:'Available'};
+  $('formTitle').textContent=id?'Edit iPhone':'Add iPhone';
+  Object.keys(F).forEach(function(k){$(F[k]).value=i[k]!=null?i[k]:''});
+  $('delBtn').style.display=id?'inline-block':'none';$('formErr').textContent='';
+  open('formSheet');
+}
+$('addBtn').onclick=function(){openForm(null)};
+$('list').onclick=function(e){
+  var ed=e.target.closest('[data-edit]');
+  if(ed&&admin){openForm(ed.dataset.edit);return}
+  var c=e.target.closest('.card');if(!c)return;
+  openId=openId===c.dataset.id?null:c.dataset.id;render();
+};
+$('saveBtn').onclick=async function(){
+  var rec={};
+  Object.keys(F).forEach(function(k){rec[k]=$(F[k]).value.trim()});
+  rec.cost=parseFloat(rec.cost);rec.sell=parseFloat(rec.sell);rec.bat=rec.bat?parseInt(rec.bat,10):0;
+  if(!rec.model||isNaN(rec.cost)||isNaN(rec.sell)||rec.cost<0||rec.sell<0){$('formErr').textContent='Enter the model, purchase cost and selling price.';return}
+  if(rec.bat&&(rec.bat<1||rec.bat>100)){$('formErr').textContent='Battery health must be between 1 and 100.';return}
+  try{
+    if(editId)await api('PUT','/api/admin/phones/'+editId,rec);
+    else{var r=await api('POST','/api/admin/phones',rec);openId=r.id}
+    close('formSheet');refresh();
+  }catch(e){$('formErr').textContent=e.message}
+};
+$('delBtn').onclick=async function(){
+  if(!confirm('Delete this iPhone?'))return;
+  try{await api('DELETE','/api/admin/phones/'+editId);close('formSheet');refresh()}
+  catch(e){$('formErr').textContent=e.message}
+};
+refresh();
+</script>
+</body>
+</html>
