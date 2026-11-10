@@ -1,78 +1,166 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="orange">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>iPhone Stock</title>
+<meta name="theme-color" content="#ff6b35">
+<title>iPhone Stock — Find Your Next iPhone</title>
 <style>
-:root{--bg:#f6f7f9;--card:#fff;--tx:#1b1f24;--mu:#6b7280;--bd:#e5e7eb;--ac:#2563eb;--ok:#15803d;--warn:#b45309;--bad:#b91c1c;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#111318;--card:#1c1f26;--tx:#eceef2;--mu:#9aa1ad;--bd:#2b303a;--ac:#6ea0ff;--ok:#4ade80;--warn:#fbbf24;--bad:#f87171;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#111318;--card:#1c1f26;--tx:#eceef2;--mu:#9aa1ad;--bd:#2b303a;--ac:#6ea0ff;--ok:#4ade80;--warn:#fbbf24;--bad:#f87171;color-scheme:dark}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
+:root{
+  --bg:#fff8f4;--surface:#fff;--text:#211b1b;--muted:#776b68;--line:rgba(40,25,20,.12);
+  --accent:#ff6538;--accent2:#f12d63;--hero1:#ff713d;--hero2:#f34555;--heroText:#fff;
+  --good:#16834a;--warn:#b66b12;--bad:#c53342;--shadow:0 18px 55px rgba(72,29,20,.12);
+}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
-.wrap{max-width:560px;margin:0 auto;padding:12px 14px 96px}
-header{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:4px 0 12px}
-h1{font-size:20px;margin:0}
-h3{font-size:13px;margin:16px 0 0;color:var(--mu);text-transform:uppercase;letter-spacing:.04em}
-.tag{font-size:12px;color:var(--mu)}
-button,input,select,textarea{font:inherit;color:inherit}
-.btn{background:var(--ac);color:#fff;border:0;border-radius:10px;padding:10px 14px;font-weight:600;cursor:pointer}
-.btn.ghost{background:transparent;color:var(--ac);border:1px solid var(--bd)}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;overflow-x:hidden}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+body:before{content:"";position:fixed;inset:-30%;z-index:-1;pointer-events:none;background:radial-gradient(circle at 10% 10%,rgba(255,112,61,.10),transparent 35%),radial-gradient(circle at 90% 70%,rgba(241,45,99,.08),transparent 34%);filter:blur(30px)}
+.wrap{max-width:1200px;margin:auto;padding:0 28px 90px}
+.topbar{height:78px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);font-weight:900;letter-spacing:-.06em;font-size:21px}
+.brand-mark{width:34px;height:34px;border-radius:11px;background:linear-gradient(145deg,var(--accent),var(--accent2));display:grid;place-items:center;color:#fff;box-shadow:0 7px 18px color-mix(in srgb,var(--accent) 30%,transparent)}
+.brand-mark svg{width:19px;height:19px}
+.nav{display:flex;align-items:center;gap:26px;color:var(--muted);font-size:13px;font-weight:650}
+.nav a{color:inherit;text-decoration:none}.nav a:hover{color:var(--accent)}
+.btn{border:0;border-radius:999px;padding:11px 18px;font-weight:750;font-size:13px;background:linear-gradient(100deg,var(--accent),var(--accent2));color:#fff;box-shadow:0 8px 20px color-mix(in srgb,var(--accent) 24%,transparent);transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 12px 25px color-mix(in srgb,var(--accent) 30%,transparent)}
+.btn.ghost{background:var(--surface);color:var(--text);border:1px solid var(--line);box-shadow:none}
 .btn.danger{background:var(--bad)}
-input,select,textarea{width:100%;background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:11px 12px}
-textarea{min-height:64px;resize:vertical}
-label{display:block;font-size:13px;color:var(--mu);margin:10px 0 4px}
-.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:12px 14px;margin-bottom:10px;cursor:pointer}
-.row{display:flex;justify-content:space-between;align-items:center;gap:10px}
-.name{font-weight:600}
-.sub{font-size:13px;color:var(--mu)}
-.price{font-weight:700;font-size:18px}
-.pill{font-size:12px;font-weight:600;border-radius:99px;padding:2px 9px;border:1px solid currentColor;margin-right:4px;display:inline-block}
-.ok{color:var(--ok)}.low{color:var(--warn)}.out{color:var(--bad)}
-.grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px}
-.stat{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:10px}
-.stat b{display:block;font-size:15px}
-.det{margin-top:10px;border-top:1px solid var(--bd);padding-top:8px}
-.det div{display:flex;justify-content:space-between;gap:12px;padding:4px 0;font-size:14px}
-.det span:first-child{color:var(--mu);flex-shrink:0}
-.det span:last-child{text-align:right;word-break:break-word}
-.priv{margin-top:8px;padding:8px 10px;border:1px dashed var(--bd);border-radius:10px}
-.fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));border-radius:99px;padding:14px 20px;box-shadow:0 4px 14px rgba(0,0,0,.25)}
-.sheet{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:flex-end;justify-content:center;z-index:20}
+.hero{position:relative;isolation:isolate;overflow:hidden;min-height:440px;border-radius:30px;background:linear-gradient(115deg,var(--hero1),var(--hero2));color:var(--heroText);padding:28px 34px 30px;box-shadow:0 25px 65px color-mix(in srgb,var(--hero2) 25%,transparent);display:grid;grid-template-columns:1fr 1.25fr 1fr;align-items:center;gap:20px;transition:background .6s}
+.hero:before,.hero:after{content:"";position:absolute;border:1px solid rgba(255,255,255,.18);border-radius:50%;z-index:-1}
+.hero:before{width:520px;height:520px;right:17%;top:-300px}.hero:after{width:380px;height:380px;left:28%;bottom:-300px}
+.hero-copy{max-width:260px;z-index:2}
+.eyebrow{font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:850;opacity:.8}
+.hero h1{font-size:clamp(38px,5.2vw,68px);line-height:.88;letter-spacing:-.075em;margin:17px 0 18px;text-transform:uppercase;max-width:450px}
+.hero-copy p{font-size:12px;line-height:1.65;max-width:225px;color:rgba(255,255,255,.83)}
+.hero-center{position:relative;min-height:330px;display:grid;place-items:center}
+.hero-word{position:absolute;font-size:clamp(70px,12vw,150px);font-weight:1000;letter-spacing:-.095em;line-height:.8;color:rgba(255,255,255,.96);text-transform:uppercase;white-space:nowrap;text-shadow:0 8px 20px rgba(100,20,20,.06);animation:wordIn .9s both}
+.phone-stage{position:relative;width:190px;height:310px;perspective:900px;animation:float 4s ease-in-out infinite;z-index:2}
+.phone{position:absolute;inset:8px 20px;border-radius:34px;background:linear-gradient(135deg,#f5f1ed,#a9a6a4 45%,#fefefe 70%,#777);padding:7px;transform:rotate(-17deg) rotateY(-13deg);box-shadow:22px 28px 35px rgba(69,18,15,.35),inset 0 0 0 1px rgba(255,255,255,.8)}
+.phone-screen{height:100%;border-radius:28px;background:radial-gradient(circle at 65% 25%,#ffca9d,transparent 28%),linear-gradient(145deg,#272c40,#10131d 55%,#b75a48);position:relative;overflow:hidden;border:2px solid #25262a}
+.phone-screen:before{content:"";position:absolute;inset:18% -20% 12%;background:linear-gradient(135deg,rgba(255,255,255,.65),transparent 45%),linear-gradient(45deg,#f5a16f,#ec4465 50%,#5b3a7b);border-radius:48% 52% 40% 60%;transform:rotate(-25deg);filter:blur(1px)}
+.phone-screen:after{content:"";position:absolute;top:8px;left:50%;transform:translateX(-50%);width:62px;height:17px;border-radius:20px;background:#08090d}
+.camera-bump{position:absolute;top:14px;left:14px;width:76px;height:76px;border-radius:22px;background:linear-gradient(145deg,#e5e1dc,#8f8b87);box-shadow:0 4px 8px #3335;display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:9px;z-index:3}
+.lens{border-radius:50%;background:radial-gradient(circle at 35% 30%,#71819c 0 12%,#101b2e 22% 54%,#05070c 57%);border:3px solid #444}
+.hero-side{justify-self:end;z-index:2;display:flex;flex-direction:column;align-items:flex-end;gap:18px}
+.color-title{font-size:10px;opacity:.8}
+.swatches{display:flex;gap:9px}
+.swatch{width:22px;height:22px;border-radius:50%;border:2px solid rgba(255,255,255,.6);box-shadow:0 3px 10px #0002;padding:0}
+.swatch[aria-pressed="true"]{outline:2px solid #fff;outline-offset:3px}
+.swatch.orange{background:#ffb000}.swatch.pink{background:#fa3970}.swatch.teal{background:#11c6b3}.swatch.violet{background:#7954db}
+.hero-cta{margin-top:25px;background:#fff;color:#241d1c;border:0;border-radius:999px;padding:11px 17px;font-size:11px;font-weight:800}
+.hero-foot{position:absolute;bottom:23px;left:34px;right:34px;display:flex;justify-content:space-between;align-items:center;font-size:10px;color:rgba(255,255,255,.8)}
+.hero-foot span{letter-spacing:.08em}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:18px;margin:52px 0 18px}
+.section-head h2{font-size:clamp(25px,3vw,36px);letter-spacing:-.06em;margin:0;line-height:1}
+.section-head p{margin:8px 0 0;color:var(--muted);font-size:13px}
+.mode{font-size:11px;color:var(--muted);font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:25px 0 22px}
+.stat{padding:17px 19px;border-radius:18px;background:var(--surface);border:1px solid var(--line);box-shadow:0 8px 25px rgba(30,20,15,.035)}
+.stat span{display:block;font-size:11px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+.stat b{display:block;font-size:22px;letter-spacing:-.04em;margin-top:5px}
+.toolbar{display:flex;gap:10px;align-items:center;margin:18px 0 15px}
+.searchbox{position:relative;flex:1}
+.searchbox svg{position:absolute;left:15px;top:50%;transform:translateY(-50%);width:17px;color:var(--muted)}
+input,select,textarea{width:100%;background:var(--surface);color:var(--text);border:1px solid var(--line);border-radius:13px;padding:12px 14px;outline:none}
+.searchbox input{padding-left:43px}
+input:focus,select:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 12%,transparent)}
+#list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.card{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:18px;cursor:pointer;box-shadow:0 8px 25px rgba(30,20,15,.035);transition:transform .22s,border-color .22s,box-shadow .22s;min-width:0}
+.card:hover{transform:translateY(-4px);border-color:color-mix(in srgb,var(--accent) 35%,var(--line));box-shadow:var(--shadow)}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.name{font-size:17px;font-weight:850;letter-spacing:-.035em}
+.sub{font-size:12px;color:var(--muted)}
+.price{font-size:20px;font-weight:900;letter-spacing:-.05em;white-space:nowrap}
+.pills{display:flex;gap:5px;flex-wrap:wrap;margin-top:12px}
+.pill{font-size:10px;font-weight:800;border-radius:99px;padding:4px 9px;background:#f1f4f1;color:var(--good)}
+.pill.low{background:#fff4df;color:var(--warn)}.pill.out{background:#fff0f0;color:var(--bad)}
+.card-detail{border-top:1px solid var(--line);margin-top:15px;padding-top:12px}
+.card-detail div{display:flex;justify-content:space-between;gap:12px;padding:4px 0;font-size:12px}
+.card-detail span:first-child{color:var(--muted)}.card-detail span:last-child{text-align:right;word-break:break-word}
+.priv{margin-top:10px;padding:10px 12px;border:1px dashed var(--line);border-radius:12px;background:color-mix(in srgb,var(--bg) 65%,transparent)}
+.profit-row{display:flex;justify-content:space-between;gap:8px;border-top:1px solid var(--line);margin-top:13px;padding-top:12px;font-size:11px;color:var(--muted)}
+.empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:45px 10px;background:var(--surface);border:1px dashed var(--line);border-radius:18px}
+.fab{position:fixed;right:25px;bottom:25px;z-index:10;border-radius:999px;padding:15px 22px}
+.sheet{position:fixed;inset:0;background:rgba(18,12,15,.55);backdrop-filter:blur(8px);display:none;align-items:flex-end;justify-content:center;z-index:30;padding:12px}
 .sheet.on{display:flex}
-.panel{background:var(--bg);width:100%;max-width:560px;max-height:92%;overflow:auto;border-radius:18px 18px 0 0;padding:16px 16px calc(16px + env(safe-area-inset-bottom,0px))}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.err{color:var(--bad);font-size:13px;min-height:18px;margin-top:6px}
-.empty{text-align:center;color:var(--mu);padding:30px 0}
+.panel{background:var(--bg);width:100%;max-width:650px;max-height:94%;overflow:auto;border-radius:24px;padding:22px 24px calc(22px + env(safe-area-inset-bottom,0px));box-shadow:0 25px 80px #0004}
+.panel h2{margin:0 0 5px;letter-spacing:-.04em}
+.panel h3{font-size:11px;margin:20px 0 3px;color:var(--accent);text-transform:uppercase;letter-spacing:.13em}
+label{display:block;font-size:11px;color:var(--muted);font-weight:750;margin:11px 0 5px}
+textarea{min-height:70px;resize:vertical}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}
+.err{color:var(--bad);font-size:12px;min-height:18px;margin-top:8px}
+.panel-actions{display:flex;align-items:center;gap:8px;margin-top:12px}
+.panel-actions .spacer{flex:1}
+footer{padding:35px 0 10px;text-align:center;color:var(--muted);font-size:11px}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-13px) rotate(1deg)}}
+@keyframes wordIn{from{opacity:0;transform:translateY(18px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media(max-width:800px){.wrap{padding:0 18px 90px}.hero{grid-template-columns:1fr 1fr;min-height:430px;padding:25px}.hero-copy{align-self:start}.hero-center{grid-column:2;grid-row:1/3}.hero-side{grid-column:1;justify-self:start;align-items:flex-start;align-self:end;margin-bottom:24px}.hero-foot{left:25px;right:25px}.nav{gap:14px}.nav a{display:none}}
+@media(max-width:560px){.wrap{padding:0 13px 90px}.topbar{height:66px}.brand{font-size:18px}.brand-mark{width:30px;height:30px}.topbar>.btn{padding:9px 13px;font-size:11px}.hero{min-height:520px;display:flex;flex-direction:column;align-items:stretch;padding:25px 22px 65px;border-radius:23px;gap:0}.hero-copy{max-width:100%}.hero h1{font-size:48px;margin:12px 0}.hero-copy p{max-width:240px;margin:0}.hero-center{min-height:245px;order:2}.hero-word{font-size:clamp(68px,20vw,110px)}.phone-stage{transform:scale(.78);margin-top:-5px}.hero-side{position:absolute;right:20px;top:26px;align-items:flex-end}.hero-side .color-title{max-width:75px;text-align:right}.hero-cta{margin-top:12px}.hero-foot{bottom:18px;font-size:9px}.section-head{margin:38px 0 14px}.section-head h2{font-size:27px}.stats{gap:7px}.stat{padding:12px 10px;border-radius:14px}.stat span{font-size:9px}.stat b{font-size:17px}.toolbar{flex-direction:column;align-items:stretch}.toolbar .btn{align-self:flex-end}#list{grid-template-columns:1fr;gap:10px}.card{padding:16px}.panel{padding:19px 17px calc(19px + env(safe-area-inset-bottom,0px));border-radius:22px 22px 16px 16px}.two{gap:0 9px}.fab{right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px))}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <header>
-    <div><h1>iPhone Stock</h1><div class="tag" id="modeTag">Public view</div></div>
-    <button class="btn ghost" id="authBtn">Admin login</button>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="iPhone Stock home"><span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="6" y="2.5" width="12" height="19" rx="3"/><path d="M10 5h4M11 18.5h2"/></svg></span>iPhone<span style="font-weight:500">Stock.</span></a>
+    <nav class="nav"><a href="#stock">Explore stock</a><a href="#stock">Available phones</a><button class="btn ghost" id="authBtn">Admin login</button></nav>
   </header>
-  <div id="stats"></div>
-  <input id="q" type="search" placeholder="Search model, storage, colour…" style="margin-bottom:12px">
-  <div id="list"><div class="empty">Loading… the first visit after a quiet spell can take up to a minute.</div></div>
+
+  <section class="hero" id="home">
+    <div class="hero-copy">
+      <div class="eyebrow">The next upgrade starts here</div>
+      <h1>Find your<br>greatness.</h1>
+      <p>Explore our latest iPhone stock. Compare condition, battery health and details before you make your move.</p>
+      <button class="hero-cta" onclick="document.getElementById('stock').scrollIntoView({behavior:'smooth'})">Explore available iPhones&nbsp; ↗</button>
+    </div>
+    <div class="hero-center" aria-hidden="true">
+      <div class="hero-word" id="heroWord">UPGRADE</div>
+      <div class="phone-stage"><div class="phone"><div class="phone-screen"></div><div class="camera-bump"><i class="lens"></i><i class="lens"></i><i class="lens"></i><i class="lens"></i></div></div></div>
+    </div>
+    <div class="hero-side">
+      <div class="color-title">Choose your vibe</div>
+      <div class="swatches">
+        <button class="swatch teal" data-theme-choice="teal" aria-label="Teal theme" aria-pressed="false"></button>
+        <button class="swatch orange" data-theme-choice="orange" aria-label="Orange theme" aria-pressed="true"></button>
+        <button class="swatch pink" data-theme-choice="pink" aria-label="Pink theme" aria-pressed="false"></button>
+        <button class="swatch violet" data-theme-choice="violet" aria-label="Violet theme" aria-pressed="false"></button>
+      </div>
+      <div class="eyebrow" style="font-size:9px">Premium • Trusted • Simple</div>
+    </div>
+    <div class="hero-foot"><span>IPHONE STOCK / CURATED DEVICES</span><span>SCROLL TO DISCOVER ↓</span></div>
+  </section>
+
+  <section id="stock">
+    <div class="section-head">
+      <div><div class="mode" id="modeTag">Public view</div><h2>Find your iPhone.</h2><p>Fresh stock, clear details, no guesswork.</p></div>
+      <div class="eyebrow" style="color:var(--muted)">01 / STOCK</div>
+    </div>
+    <div id="stats"></div>
+    <div class="toolbar">
+      <div class="searchbox"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10.8" cy="10.8" r="7.3"/><path d="m16.2 16.2 5 5"/></svg><input id="q" type="search" placeholder="Search model, storage, colour…" aria-label="Search stock"></div>
+      <span class="sub" id="resultCount"></span>
+    </div>
+    <div id="list"><div class="empty">Loading stock… the first visit after a quiet spell can take up to a minute.</div></div>
+  </section>
+  <footer>iPhone Stock · Find the right phone for your next chapter.</footer>
 </div>
-<button class="btn fab" id="addBtn" style="display:none">+ Add iPhone</button>
+<button class="btn fab" id="addBtn" style="display:none">＋ Add iPhone</button>
 
 <div class="sheet" id="loginSheet"><div class="panel">
-  <h2 style="margin:0 0 4px" id="loginTitle">Admin login</h2>
-  <div class="sub" id="loginHint"></div>
+  <h2 id="loginTitle">Admin login</h2><div class="sub" id="loginHint">Enter your admin password.</div>
   <label>Password</label><input id="pw" type="password" autocomplete="current-password">
-  <div id="pw2wrap" style="display:none"><label>Confirm password</label><input id="pw2" type="password"></div>
   <div class="err" id="loginErr"></div>
-  <div class="row" style="margin-top:8px"><button class="btn ghost" data-close="loginSheet">Cancel</button><button class="btn" id="loginGo">Continue</button></div>
+  <div class="panel-actions"><button class="btn ghost" data-close="loginSheet">Cancel</button><span class="spacer"></span><button class="btn" id="loginGo">Continue</button></div>
 </div></div>
 
 <div class="sheet" id="formSheet"><div class="panel">
-  <h2 style="margin:0" id="formTitle">Add iPhone</h2>
-  <h3>Phone</h3>
-  <label>Model</label><input id="fModel" list="models" placeholder="e.g. iPhone 15 Pro">
-  <datalist id="models"></datalist>
+  <h2 id="formTitle">Add iPhone</h2>
+  <h3>Phone details</h3>
+  <label>Model</label><input id="fModel" list="models" placeholder="e.g. iPhone 15 Pro"><datalist id="models"></datalist>
   <div class="two">
     <div><label>Storage</label><select id="fStorage"><option>64GB</option><option>128GB</option><option>256GB</option><option>512GB</option><option>1TB</option></select></div>
     <div><label>Colour</label><input id="fColor"></div>
@@ -89,22 +177,15 @@ label{display:block;font-size:13px;color:var(--mu);margin:10px 0 4px}
   <label>Repairs / parts changed</label><input id="fRepair" placeholder="e.g. All original, screen replaced">
   <label>Comes with</label><input id="fInc" placeholder="e.g. Box, charger, bill">
   <label>Notes for buyers</label><textarea id="fNotes"></textarea>
-  <h3>Private (admin only)</h3>
+  <h3>Private · Admin only</h3>
   <label>IMEI / serial</label><input id="fIMEI">
   <div class="two">
-    <div><label>Bought from</label><input id="fFrom"></div>
-    <div><label>Bought on</label><input id="fBought" type="date"></div>
-    <div><label>Purchase cost (₹)</label><input id="fCost" type="number" inputmode="decimal" min="0"></div>
-    <div><label>Selling price (₹)</label><input id="fSell" type="number" inputmode="decimal" min="0"></div>
+    <div><label>Bought from</label><input id="fFrom"></div><div><label>Bought on</label><input id="fBought" type="date"></div>
+    <div><label>Purchase cost (₹)</label><input id="fCost" type="number" inputmode="decimal" min="0"></div><div><label>Selling price (₹)</label><input id="fSell" type="number" inputmode="decimal" min="0"></div>
   </div>
   <label>Private notes</label><textarea id="fPriv"></textarea>
   <div class="err" id="formErr"></div>
-  <div class="row" style="margin-top:8px;flex-wrap:wrap">
-    <button class="btn danger" id="delBtn" style="display:none">Delete</button>
-    <span style="flex:1"></span>
-    <button class="btn ghost" data-close="formSheet">Cancel</button>
-    <button class="btn" id="saveBtn">Save</button>
-  </div>
+  <div class="panel-actions"><button class="btn danger" id="delBtn" style="display:none">Delete</button><span class="spacer"></span><button class="btn ghost" data-close="formSheet">Cancel</button><button class="btn" id="saveBtn">Save phone</button></div>
 </div></div>
 
 <script>
@@ -120,7 +201,7 @@ async function api(method,url,body){
 }
 async function refresh(){
   try{items=await api('GET',admin?'/api/admin/phones':'/api/phones')}
-  catch(e){if(!admin)$('list').innerHTML='<div class="empty">Could not load. Please try again in a moment.</div>';return}
+  catch(e){if(!admin)$('list').innerHTML='<div class="empty">Could not load stock. Please try again in a moment.</div>';return}
   render();
 }
 function logout(){TOKEN=null;admin=false;openId=null;try{sessionStorage.removeItem('tok')}catch(e){}refresh()}
@@ -128,77 +209,73 @@ var MODELS=['iPhone 11','iPhone 12','iPhone 12 Pro','iPhone 13','iPhone 13 Pro',
 var $=function(id){return document.getElementById(id)};
 $('models').innerHTML=MODELS.map(function(m){return '<option value="'+m+'">'}).join('');
 var inr=function(n){return '₹'+Number(n||0).toLocaleString('en-IN',{maximumFractionDigits:2})};
-function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 function fd(d){if(!d)return '';var x=new Date(d+'T00:00:00');return isNaN(x)?'':x.toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'})}
 function dr(l,v){return v?'<div><span>'+l+'</span><span>'+esc(v)+'</span></div>':''}
-function batCls(b){return b>=85?'ok':b>=75?'low':'out'}
-
+function batCls(b){return b>=85?'':'low'}
 function render(){
   var term=$('q').value.trim().toLowerCase();
   var list=items.filter(function(i){return [i.model,i.storage,i.color,i.cond].join(' ').toLowerCase().indexOf(term)>-1});
   list.sort(function(a,b){return (a.status==='Sold')-(b.status==='Sold')});
-  $('modeTag').textContent=admin?'Admin view':'Public view';
+  $('modeTag').textContent=admin?'ADMIN INVENTORY':'PUBLIC VIEW';
   $('authBtn').textContent=admin?'Log out':'Admin login';
   $('addBtn').style.display=admin?'block':'none';
   var st='';
   if(admin){
     var n=0,cost=0,profit=0;
-    items.forEach(function(i){if(i.status!=='Sold'){n++;cost+=i.cost;profit+=i.sell-i.cost}});
-    st='<div class="grid"><div class="stat"><span class="sub">Available</span><b>'+n+'</b></div>'+
-       '<div class="stat"><span class="sub">Money invested</span><b>'+inr(cost)+'</b></div>'+
-       '<div class="stat"><span class="sub">Exp. profit</span><b>'+inr(profit)+'</b></div></div>';
+    items.forEach(function(i){if(i.status!=='Sold'){n++;cost+=Number(i.cost||0);profit+=Number(i.sell||0)-Number(i.cost||0)}});
+    st='<div class="stats"><div class="stat"><span>Available devices</span><b>'+n+'</b></div><div class="stat"><span>Money invested</span><b>'+inr(cost)+'</b></div><div class="stat"><span>Expected profit</span><b>'+inr(profit)+'</b></div></div>';
+  }else{
+    var available=items.filter(function(i){return i.status!=='Sold'}).length;
+    st='<div class="stats"><div class="stat"><span>In stock</span><b>'+available+'</b></div><div class="stat"><span>Models listed</span><b>'+items.length+'</b></div><div class="stat"><span>Easy discovery</span><b>100%</b></div></div>';
   }
   $('stats').innerHTML=st;
-  if(!list.length){$('list').innerHTML='<div class="empty">No iPhones found.</div>';return}
+  $('resultCount').textContent=list.length+' result'+(list.length===1?'':'s');
+  if(!list.length){$('list').innerHTML='<div class="empty">No iPhones found. Try another search.</div>';return}
   $('list').innerHTML=list.map(function(i){
     var sold=i.status==='Sold';
-    var h='<div class="card" data-id="'+i.id+'" style="'+(sold?'opacity:.65':'')+'"><div class="row"><div><div class="name">'+esc(i.model)+'</div>'+
-      '<div class="sub">'+esc(i.storage)+' · '+esc(i.color||'—')+' · '+esc(i.cond)+'</div>'+
-      '<div style="margin-top:4px">'+(sold?'<span class="pill out">Sold</span>':'<span class="pill ok">Available</span>')+
-      (i.bat?'<span class="pill '+batCls(i.bat)+'">Battery '+i.bat+'%</span>':'')+'</div></div>'+
-      '<div class="price">'+inr(i.sell)+'</div></div>';
+    var h='<article class="card" data-id="'+esc(i.id)+'" style="'+(sold?'opacity:.62':'')+'"><div class="card-top"><div><div class="name">'+esc(i.model)+'</div><div class="sub">'+esc(i.storage)+' · '+esc(i.color||'—')+' · '+esc(i.cond)+'</div><div class="pills">'+(sold?'<span class="pill out">Sold</span>':'<span class="pill">Available</span>')+(i.bat?'<span class="pill '+batCls(i.bat)+'">Battery '+i.bat+'%</span>':'')+'</div></div><div class="price">'+inr(i.sell)+'</div></div>';
     if(admin){
       var m=i.sell>0?((i.sell-i.cost)/i.sell*100):0;
-      h+='<div class="row sub" style="margin-top:8px;border-top:1px solid var(--bd);padding-top:8px"><span>Cost '+inr(i.cost)+'</span><span>Profit '+inr(i.sell-i.cost)+'</span><span style="color:'+(m<0?'var(--bad)':'var(--ok)')+'">'+m.toFixed(1)+'%</span></div>';
+      h+='<div class="profit-row"><span>Cost '+inr(i.cost)+'</span><span>Profit '+inr(i.sell-i.cost)+'</span><span style="color:'+(m<0?'var(--bad)':'var(--good)')+'">'+m.toFixed(1)+'%</span></div>';
     }
     if(openId===i.id){
-      h+='<div class="det">'+dr('Battery health',i.bat?i.bat+'%':'')+dr('First used',fd(i.first))+dr('Warranty till',fd(i.war))+dr('Screen / body',i.body)+dr('Repairs / parts',i.repair)+dr('Comes with',i.inc)+dr('Notes',i.notes)+'</div>';
+      h+='<div class="card-detail">'+dr('Battery health',i.bat?i.bat+'%':'')+dr('First used',fd(i.first))+dr('Warranty till',fd(i.war))+dr('Screen / body',i.body)+dr('Repairs / parts',i.repair)+dr('Comes with',i.inc)+dr('Notes',i.notes)+'</div>';
       if(admin){
-        h+='<div class="priv sub">'+dr('IMEI / serial',i.imei)+dr('Bought from',i.from)+dr('Bought on',fd(i.bought))+dr('Private notes',i.priv)+'</div>'+
-           '<div style="margin-top:10px"><button class="btn ghost" data-edit="'+i.id+'">Edit this phone</button></div>';
+        h+='<div class="priv card-detail">'+dr('IMEI / serial',i.imei)+dr('Bought from',i.from)+dr('Bought on',fd(i.bought))+dr('Private notes',i.priv)+'</div><div style="margin-top:12px"><button class="btn ghost" data-edit="'+esc(i.id)+'">Edit this phone</button></div>';
       }
     }
-    return h+'</div>';
+    return h+'</article>';
   }).join('');
 }
-
 function open(id){$(id).classList.add('on')}
 function close(id){$(id).classList.remove('on')}
 document.querySelectorAll('[data-close]').forEach(function(b){b.onclick=function(){close(b.dataset.close)}});
-
+document.querySelectorAll('[data-theme-choice]').forEach(function(b){b.onclick=function(){
+  var t=b.dataset.themeChoice;document.documentElement.dataset.theme=t;
+  var palettes={orange:['#ff713d','#f34555'],pink:['#e91e58','#a81e80'],teal:['#0eb8ad','#087b9b'],violet:['#8152dc','#5138a8']};
+  document.documentElement.style.setProperty('--hero1',palettes[t][0]);document.documentElement.style.setProperty('--hero2',palettes[t][1]);
+  document.documentElement.style.setProperty('--accent',palettes[t][0]);document.documentElement.style.setProperty('--accent2',palettes[t][1]);
+  document.querySelectorAll('[data-theme-choice]').forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});
+  $('heroWord').textContent=({orange:'UPGRADE',pink:'BOLD',teal:'FRESH',violet:'ICONIC'})[t];
+}};
 $('authBtn').onclick=function(){
   if(admin){logout();return}
   $('loginTitle').textContent='Admin login';$('loginHint').textContent='Enter your admin password.';
-  $('pw').value='';$('loginErr').textContent='';
-  open('loginSheet');$('pw').focus();
+  $('pw').value='';$('loginErr').textContent='';open('loginSheet');$('pw').focus();
 };
 $('loginGo').onclick=async function(){
-  try{
-    var r=await api('POST','/api/login',{password:$('pw').value});
-    TOKEN=r.token;admin=true;try{sessionStorage.setItem('tok',TOKEN)}catch(e){}
-    close('loginSheet');refresh();
-  }catch(e){$('loginErr').textContent=e.message}
+  try{var r=await api('POST','/api/login',{password:$('pw').value});TOKEN=r.token;admin=true;try{sessionStorage.setItem('tok',TOKEN)}catch(e){}close('loginSheet');refresh()}
+  catch(e){$('loginErr').textContent=e.message}
 };
 $('pw').onkeydown=function(e){if(e.key==='Enter')$('loginGo').click()};
 $('q').oninput=render;
-
 var F={model:'fModel',storage:'fStorage',color:'fColor',cond:'fCond',status:'fStatus',bat:'fBat',first:'fFirst',war:'fWar',body:'fBody',repair:'fRepair',inc:'fInc',notes:'fNotes',imei:'fIMEI',from:'fFrom',bought:'fBought',cost:'fCost',sell:'fSell',priv:'fPriv'};
 function openForm(id){
   editId=id;var i=items.find(function(x){return x.id===id})||{storage:'128GB',cond:'Used',status:'Available'};
   $('formTitle').textContent=id?'Edit iPhone':'Add iPhone';
   Object.keys(F).forEach(function(k){$(F[k]).value=i[k]!=null?i[k]:''});
-  $('delBtn').style.display=id?'inline-block':'none';$('formErr').textContent='';
-  open('formSheet');
+  $('delBtn').style.display=id?'inline-block':'none';$('formErr').textContent='';open('formSheet');
 }
 $('addBtn').onclick=function(){openForm(null)};
 $('list').onclick=function(e){
@@ -208,22 +285,19 @@ $('list').onclick=function(e){
   openId=openId===c.dataset.id?null:c.dataset.id;render();
 };
 $('saveBtn').onclick=async function(){
-  var rec={};
-  Object.keys(F).forEach(function(k){rec[k]=$(F[k]).value.trim()});
+  var rec={};Object.keys(F).forEach(function(k){rec[k]=$(F[k]).value.trim()});
   rec.cost=parseFloat(rec.cost);rec.sell=parseFloat(rec.sell);rec.bat=rec.bat?parseInt(rec.bat,10):0;
   if(!rec.model||isNaN(rec.cost)||isNaN(rec.sell)||rec.cost<0||rec.sell<0){$('formErr').textContent='Enter the model, purchase cost and selling price.';return}
   if(rec.bat&&(rec.bat<1||rec.bat>100)){$('formErr').textContent='Battery health must be between 1 and 100.';return}
-  try{
-    if(editId)await api('PUT','/api/admin/phones/'+editId,rec);
-    else{var r=await api('POST','/api/admin/phones',rec);openId=r.id}
-    close('formSheet');refresh();
-  }catch(e){$('formErr').textContent=e.message}
+  try{if(editId)await api('PUT','/api/admin/phones/'+editId,rec);else{var r=await api('POST','/api/admin/phones',rec);openId=r.id}close('formSheet');refresh()}
+  catch(e){$('formErr').textContent=e.message}
 };
 $('delBtn').onclick=async function(){
   if(!confirm('Delete this iPhone?'))return;
   try{await api('DELETE','/api/admin/phones/'+editId);close('formSheet');refresh()}
   catch(e){$('formErr').textContent=e.message}
 };
+document.querySelectorAll('.sheet').forEach(function(s){s.addEventListener('click',function(e){if(e.target===s)s.classList.remove('on')})});
 refresh();
 </script>
 </body>
