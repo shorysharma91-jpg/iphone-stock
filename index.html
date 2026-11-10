@@ -64,6 +64,229 @@ body.on-home .hero:before{display:none}
 .home-hit.analytics-nav{left:60.0%;top:4.0%;width:7.0%;height:7.0%}
 
 
+
+/* Scroll-driven 3D product stories */
+.scroll-story{position:relative;min-height:132vh;margin:0 0 42px;border:1px solid #ffffff20;border-radius:26px;overflow:clip;background:radial-gradient(ellipse at 78% 48%,#6c35ff24,transparent 38%),linear-gradient(125deg,#151125,#090817 68%);isolation:isolate}
+.scroll-story.iphone-story{background:radial-gradient(ellipse at 78% 48%,#ff7a182b,transparent 38%),linear-gradient(125deg,#1a100f,#090817 68%)}
+.story-sticky{position:sticky;top:0;min-height:650px;height:100vh;max-height:850px;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:30px;padding:clamp(26px,6vw,82px);overflow:hidden}
+.story-copy{position:relative;z-index:2;max-width:490px}
+.story-kicker{font-size:11px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:#ff9b4a;margin-bottom:18px}
+.android-story .story-kicker{color:#b48aff}
+.story-copy h2{font-size:clamp(36px,5.3vw,68px);line-height:.98;letter-spacing:-.055em;margin:0 0 18px}
+.story-copy h2 span{background:linear-gradient(90deg,#ff9a3d,#ee3da6);-webkit-background-clip:text;background-clip:text;color:transparent}
+.android-story .story-copy h2 span{background-image:linear-gradient(90deg,#b58aff,#ed8cff)}
+.story-copy p{max-width:400px;color:#c4bfd4;font-size:15px;line-height:1.75;margin:0 0 24px}
+.story-points{display:grid;gap:10px;margin-top:30px;max-width:390px}
+.story-point{display:flex;align-items:center;gap:13px;padding:12px 14px;border:1px solid #ffffff1a;border-radius:12px;background:#ffffff08;color:#e9e5f3;font-size:13px;opacity:.45;transform:translateX(-12px);transition:opacity .45s,transform .45s,border-color .45s}
+.story-point.is-lit{opacity:1;transform:translateX(0);border-color:#ff8b3d80}
+.android-story .story-point.is-lit{border-color:#a77aff80}
+.story-point i{display:grid;place-items:center;width:27px;height:27px;border-radius:50%;font-style:normal;background:#ff7a1826;color:#ffae70;font-weight:800}
+.android-story .story-point i{background:#8b45ff30;color:#c6a8ff}
+.story-visual{height:min(72vh,600px);min-height:420px;display:grid;place-items:center;position:relative;perspective:1100px}
+.story-glow{position:absolute;width:min(35vw,390px);aspect-ratio:1;border-radius:50%;background:#ff7a1829;filter:blur(60px)}
+.android-story .story-glow{background:#8b45ff35}
+.story-orbit{position:absolute;width:min(34vw,390px);aspect-ratio:1;border:1px solid #ff9a3d4d;border-radius:50%;transform:rotateX(70deg) rotateZ(-22deg)}
+.android-story .story-orbit{border-color:#a77aff60}
+.story-device{position:relative;width:clamp(175px,21vw,255px);height:clamp(355px,43vw,500px);border-radius:43px;padding:8px;background:linear-gradient(135deg,#f4d7c1,#62515a 35%,#17141f 72%,#d1b8a6);box-shadow:25px 40px 70px #0009,inset 0 0 0 2px #ffffffa0;transform-style:preserve-3d;transform:rotateY(-24deg) rotateX(7deg) rotateZ(-7deg);will-change:transform}
+.android-story .story-device{background:linear-gradient(135deg,#d9d0fa,#6e668b 35%,#171426 72%,#c9c0e7)}
+.story-screen{position:absolute;inset:8px;border-radius:36px;overflow:hidden;background:radial-gradient(circle at 50% 22%,#ffc9a1 0,#a94c55 22%,#282044 56%,#0b0b17 85%);border:1px solid #ffffff70}
+.android-story .story-screen{background:radial-gradient(circle at 50% 20%,#d4c2ff 0,#6c55a8 24%,#30285b 57%,#0b0b17 85%)}
+.story-screen:before{content:"";position:absolute;inset:-20% -30%;background:conic-gradient(from 20deg,transparent,#ffcf9b50,transparent 30%,#f78cc450,transparent 70%);animation:screen-drift 9s linear infinite}
+.android-story .story-screen:before{background:conic-gradient(from 20deg,transparent,#d9c5ff55,transparent 30%,#7eafff45,transparent 70%)}
+.story-screen:after{content:"";position:absolute;inset:16% 10% 8%;border-radius:48% 48% 40% 40%;background:linear-gradient(145deg,#ffffff24,transparent 50%);filter:blur(10px)}
+.story-island{position:absolute;z-index:2;top:15px;left:50%;transform:translateX(-50%);width:31%;height:23px;border-radius:20px;background:#08080e}
+.story-camera-bump{position:absolute;z-index:3;top:20px;left:18px;width:88px;height:88px;border-radius:23px;background:linear-gradient(145deg,#e4c7b9,#76616a);box-shadow:0 5px 12px #0006;transform:translateZ(14px)}
+.android-story .story-camera-bump{background:linear-gradient(145deg,#d9d0f2,#77708e)}
+.story-lens{position:absolute;width:27px;height:27px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#9bb2c9 0 8%,#11121d 22%,#05050a 65%,#778093 72%,#15131d 83%);border:2px solid #b6a8a3;box-shadow:0 2px 5px #0009}
+.story-lens:nth-child(1){top:10px;left:10px}.story-lens:nth-child(2){top:10px;right:10px}.story-lens:nth-child(3){bottom:10px;left:10px}
+.android-story .story-lens{border-color:#b7b0d2}
+.story-side-shine{position:absolute;right:-5px;top:25%;width:5px;height:48%;border-radius:0 4px 4px 0;background:#e9c6b4;transform:translateZ(2px)}
+.story-caption{position:absolute;bottom:5%;left:50%;transform:translateX(-50%);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#a7a0b8;white-space:nowrap}
+.story-progress{position:absolute;bottom:0;left:0;height:3px;width:0;background:linear-gradient(90deg,#ff8c2d,#e63fa8);transition:width .08s linear}
+.android-story .story-progress{background:linear-gradient(90deg,#9b65ff,#ec75d8)}
+@keyframes screen-drift{to{transform:rotate(360deg)}}
+@media(max-width:760px){.scroll-story{min-height:115vh;border-radius:17px}.story-sticky{min-height:650px;height:100svh;grid-template-columns:1fr;grid-template-rows:auto 1fr;gap:0;padding:34px 22px 22px;align-content:start}.story-copy h2{font-size:clamp(34px,9vw,52px)}.story-copy p{font-size:13px;margin-bottom:12px}.story-points{grid-template-columns:1fr 1fr;gap:7px;margin-top:15px}.story-point{font-size:10px;padding:8px;gap:7px}.story-point i{width:22px;height:22px;flex:none}.story-visual{min-height:290px;height:38vh}.story-device{width:145px;height:292px;border-radius:30px}.story-screen{border-radius:24px}.story-camera-bump{width:68px;height:68px;border-radius:17px}.story-lens{width:21px;height:21px}.story-glow,.story-orbit{width:230px}.story-caption{bottom:2%}}
+@media(prefers-reduced-motion:reduce){.story-screen:before{animation:none}.story-point{transition:none}}
+
+
+/* Premium, reference-inspired full-screen product showcase */
+.scroll-story{
+  width:100vw;max-width:none;min-height:150vh;margin:0 0 48px;
+  margin-left:calc(50% - 50vw);border:0;border-radius:0;overflow:clip;
+  background:
+    radial-gradient(ellipse at 51% 58%,#ff782c35 0%,transparent 35%),
+    radial-gradient(ellipse at 88% 25%,#a13cff20 0%,transparent 35%),
+    linear-gradient(125deg,#130d0b 0%,#090812 56%,#0c081b 100%);
+}
+.iphone-story{--accent:#ff8736;--accent2:#e64caa;--device-glow:#ff762f}
+.android-story{--accent:#a477ff;--accent2:#e34dce;--device-glow:#884dff;
+  background:
+    radial-gradient(ellipse at 51% 58%,#8b50ff3d 0%,transparent 36%),
+    radial-gradient(ellipse at 10% 18%,#ff79321a 0%,transparent 35%),
+    linear-gradient(125deg,#100c18 0%,#090812 58%,#130a20 100%);
+}
+.story-sticky{
+  min-height:690px;height:100svh;max-height:1000px;
+  grid-template-columns:minmax(210px, .82fr) minmax(300px,1.55fr) minmax(130px,.52fr);
+  gap:clamp(12px,2vw,36px);padding:clamp(24px,4.4vw,72px) clamp(24px,5vw,86px);
+}
+.story-sticky:before{
+  content:attr(data-ghost);position:absolute;z-index:0;left:50%;top:47%;
+  transform:translate(-50%,-50%);font-size:clamp(100px,19vw,280px);
+  line-height:.8;font-weight:1000;letter-spacing:-.095em;white-space:nowrap;
+  color:#ffffff0b;pointer-events:none;text-transform:uppercase;
+}
+.story-copy{max-width:390px;z-index:3}
+.story-kicker{color:var(--accent);font-size:11px;letter-spacing:.24em}
+.story-copy h2{font-size:clamp(35px,4vw,62px);line-height:.91;letter-spacing:-.065em;text-transform:uppercase}
+.story-copy h2 span{background:linear-gradient(95deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text}
+.story-copy p{font-size:14px;line-height:1.8;color:#c7c1ce}
+.story-points{gap:9px;margin-top:25px}
+.story-point{border-radius:3px;background:#ffffff09;border-left:2px solid var(--accent);border-top:0;border-right:0;border-bottom:0;padding:11px 12px;font-size:12px;transform:translateX(-8px)}
+.story-point.is-lit{border-color:var(--accent);background:#ffffff12}
+.story-point i{background:color-mix(in srgb,var(--accent) 22%,transparent);color:var(--accent);border-radius:2px}
+.story-visual{height:82vh;min-height:500px;max-height:780px;z-index:2}
+.story-glow{width:min(34vw,480px);background:color-mix(in srgb,var(--device-glow) 24%,transparent);filter:blur(85px)}
+.story-orbit{width:min(34vw,470px);border:1px solid color-mix(in srgb,var(--accent) 55%,transparent);transform:rotateX(72deg) rotateZ(-20deg)}
+.story-device{
+  width:clamp(205px,22vw,290px);height:clamp(420px,48vw,570px);
+  border-radius:45px;padding:9px;
+  box-shadow:28px 45px 100px #000b,0 0 65px color-mix(in srgb,var(--device-glow) 22%,transparent),inset 0 0 0 2px #ffffffb0;
+  transform:rotateY(-28deg) rotateX(7deg) rotateZ(-8deg);
+}
+.story-screen{border-radius:37px}
+.story-screen:before{opacity:.9}
+.story-camera-bump{width:92px;height:92px;border-radius:24px}
+.story-caption{bottom:3%;color:#d2cbdc;font-size:9px;letter-spacing:.22em}
+.story-side-shine{background:linear-gradient(180deg,#fff2d8,var(--accent));}
+.story-color-panel{position:relative;z-index:3;align-self:center;justify-self:end;display:grid;gap:13px;min-width:115px}
+.story-color-title{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#d5cddd;line-height:1.4}
+.story-color-list{display:flex;gap:9px;align-items:center;flex-wrap:wrap;max-width:140px}
+.story-color{width:25px;height:25px;border:2px solid #ffffff88;border-radius:50%;padding:0;cursor:pointer;box-shadow:0 0 0 3px transparent;transition:transform .2s,box-shadow .2s}
+.story-color:hover,.story-color.active{transform:scale(1.14);box-shadow:0 0 0 3px #ffffff55}
+.story-color[data-tone="light"]{background:#d7c8bd}
+.story-color[data-tone="dark"]{background:#34313b}
+.story-color[data-tone="warm"]{background:#c47c4f}
+.story-color[data-tone="violet"]{background:#9a86d9}
+.story-color[data-tone="silver"]{background:#c7cbd4}
+.story-color[data-tone="blue"]{background:#416caa}
+.story-color-note{font-size:10px;color:#a9a1b5;line-height:1.5}
+.story-scroll-label{font-size:10px;color:#c9c1d2;letter-spacing:.18em;text-transform:uppercase}
+.story-progress{background:linear-gradient(90deg,var(--accent),var(--accent2))}
+@media(max-width:760px){
+ .scroll-story{min-height:138vh;margin-bottom:24px}
+ .story-sticky{height:100svh;min-height:650px;max-height:none;grid-template-columns:1fr 1fr;grid-template-rows:auto 1fr auto;gap:4px 12px;padding:28px 20px 24px}
+ .story-sticky:before{top:54%;font-size:25vw}
+ .story-copy{grid-column:1 / -1;max-width:100%}
+ .story-copy h2{font-size:clamp(32px,8vw,49px)}
+ .story-copy p{font-size:12px;max-width:520px;margin-bottom:8px}
+ .story-points{display:none}
+ .story-visual{grid-column:1 / 2;grid-row:2 / 4;min-height:340px;height:46vh;align-self:center}
+ .story-device{width:clamp(145px,39vw,190px);height:clamp(300px,78vw,390px);border-radius:31px}
+ .story-screen{border-radius:24px}
+ .story-camera-bump{width:68px;height:68px;border-radius:17px}
+ .story-lens{width:21px;height:21px}
+ .story-color-panel{grid-column:2;grid-row:2;justify-self:center;align-self:center;min-width:0}
+ .story-color-list{max-width:100px}
+ .story-color{width:22px;height:22px}
+ .story-caption{font-size:8px;white-space:normal;text-align:center;width:150px}
+ .story-glow,.story-orbit{width:220px}
+}
+
+
+/* Arrow-controlled, full-screen phone model carousel */
+.phone-carousel{
+  --carousel-a:#ff8736;--carousel-b:#e64caa;
+  position:relative;width:100vw;max-width:none;height:100svh;min-height:620px;
+  margin:0 0 34px;margin-left:calc(50% - 50vw);padding:clamp(22px,3vw,44px) clamp(24px,5vw,82px);
+  overflow:hidden;color:#fff;background:
+  radial-gradient(ellipse at 65% 48%,#ff782c30 0%,transparent 34%),
+  linear-gradient(115deg,#170d09 0%,#080811 55%,#10091b 100%);
+}
+.android-carousel{--carousel-a:#a477ff;--carousel-b:#e34dce;background:
+  radial-gradient(ellipse at 65% 48%,#8b50ff38 0%,transparent 35%),
+  linear-gradient(115deg,#100c18 0%,#080811 55%,#130a20 100%)}
+.carousel-topline,.carousel-bottom{display:flex;justify-content:space-between;gap:20px;color:#b9b1c4;font-size:10px;letter-spacing:.19em;text-transform:uppercase}
+.carousel-layout{height:calc(100% - 48px);display:grid;grid-template-columns:minmax(230px,.8fr) minmax(320px,1.5fr) minmax(80px,.35fr);align-items:center;gap:22px;max-width:1450px;margin:0 auto}
+.carousel-copy{z-index:3;max-width:390px}
+.carousel-kicker{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--carousel-a);font-weight:800;margin-bottom:22px}
+.carousel-title{font-size:clamp(42px,5.4vw,78px);line-height:.9;letter-spacing:-.065em;margin:0 0 22px;font-weight:900}
+.carousel-description{font-size:14px;line-height:1.8;color:#c8c0d0;max-width:330px;min-height:76px;transition:opacity .2s,transform .2s}
+.carousel-meta{display:flex;align-items:center;gap:12px;margin-top:26px;color:#bcb4c8;font-size:10px;letter-spacing:.12em;text-transform:uppercase}
+.carousel-model-count{color:var(--carousel-a);font-weight:800}
+.carousel-dash{width:38px;height:1px;background:var(--carousel-a)}
+.carousel-controls{display:flex;gap:12px;margin-top:38px}
+.carousel-arrow{width:52px;height:52px;border:1px solid #ffffff60;border-radius:50%;background:#ffffff0a;color:white;font-size:26px;cursor:pointer;transition:background .2s,border-color .2s,transform .2s}
+.carousel-arrow:hover{background:var(--carousel-a);border-color:var(--carousel-a);transform:scale(1.07)}
+.carousel-hint{font-size:10px;color:#8f879c;letter-spacing:.08em;margin-top:16px}
+.carousel-stage{height:min(72vh,680px);min-height:440px;position:relative;display:grid;place-items:center;perspective:1200px;isolation:isolate}
+.carousel-halo{position:absolute;width:min(38vw,510px);aspect-ratio:1;border-radius:50%;background:var(--carousel-a);opacity:.17;filter:blur(100px)}
+.carousel-ring{position:absolute;width:min(35vw,470px);aspect-ratio:1;border:1px solid color-mix(in srgb,var(--carousel-a) 55%,transparent);border-radius:50%;transform:rotateX(72deg) rotateZ(-20deg)}
+.carousel-ghost-word{position:absolute;z-index:-1;top:48%;left:50%;transform:translate(-50%,-50%);font-size:clamp(80px,15vw,220px);font-weight:1000;letter-spacing:-.09em;color:#ffffff0b;white-space:nowrap}
+.carousel-phone-wrap{position:relative;z-index:2;transform-style:preserve-3d;transition:transform .65s cubic-bezier(.2,.75,.25,1),opacity .3s}
+.carousel-phone-wrap.shift-left{transform:translateX(-90px) rotateY(-36deg) rotateZ(-8deg);opacity:0}
+.carousel-phone-wrap.shift-right{transform:translateX(90px) rotateY(36deg) rotateZ(8deg);opacity:0}
+.carousel-phone{position:relative;width:clamp(190px,21vw,270px);height:clamp(380px,44vw,530px);padding:9px;border-radius:44px;background:linear-gradient(135deg,#f1d8c9,#6d5a5d 38%,#15131b 72%,#d8b6a2);box-shadow:28px 45px 85px #000b,0 0 55px color-mix(in srgb,var(--carousel-a) 24%,transparent),inset 0 0 0 2px #ffffffaa;transform:rotateY(-24deg) rotateX(7deg) rotateZ(-7deg);transition:background .35s}
+.android-carousel .carousel-phone{background:linear-gradient(135deg,#ddd5f7,#71698a 38%,#171426 72%,#c7bde8)}
+.carousel-phone-screen{position:absolute;inset:9px;border-radius:36px;overflow:hidden;background:radial-gradient(circle at 45% 28%,#ffca9b 0,#b94e55 25%,#322044 60%,#080812 90%);border:1px solid #ffffff80}
+.android-carousel .carousel-phone-screen{background:radial-gradient(circle at 45% 28%,#d9c7ff 0,#6f5cb0 25%,#29224f 60%,#080812 90%)}
+.carousel-phone-screen:before{content:"";position:absolute;inset:-20%;background:conic-gradient(from 10deg,transparent,#ffffff40,transparent 30%,#ffb1ce40,transparent 65%);animation:carousel-screen-glow 9s linear infinite}
+.carousel-phone-notch{position:absolute;z-index:2;top:12px;left:50%;transform:translateX(-50%);width:31%;height:22px;border-radius:20px;background:#08080d}
+.carousel-phone-camera{position:absolute;z-index:3;top:20px;left:17px;width:88px;height:88px;border-radius:23px;background:linear-gradient(145deg,#e7d0c5,#76616a);box-shadow:0 5px 12px #0007}
+.carousel-phone-camera i{position:absolute;width:27px;height:27px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#a9c3d6 0 7%,#11121d 23%,#05050a 68%,#89909c 74%,#15131d 84%);border:2px solid #b7a8a2}
+.carousel-phone-camera i:nth-child(1){top:9px;left:9px}.carousel-phone-camera i:nth-child(2){top:9px;right:9px}.carousel-phone-camera i:nth-child(3){bottom:9px;left:9px}
+.carousel-phone-side{position:absolute;right:-5px;top:25%;width:5px;height:48%;border-radius:0 4px 4px 0;background:var(--carousel-a)}
+.carousel-floor{position:absolute;bottom:6%;width:min(38vw,470px);height:22px;border-radius:50%;background:var(--carousel-a);opacity:.45;filter:blur(25px)}
+.carousel-product-label{position:absolute;bottom:2%;font-size:10px;color:#d6cedf;letter-spacing:.2em;text-transform:uppercase}
+.carousel-side{justify-self:end;z-index:3}
+.carousel-side-label{font-size:9px;letter-spacing:.2em;color:#bdb4c9;writing-mode:vertical-rl;margin-bottom:20px}
+.carousel-dots{display:grid;gap:12px}
+.carousel-dot{width:10px;height:10px;border:1px solid #ffffff88;border-radius:50%;background:transparent;padding:0;cursor:pointer}
+.carousel-dot.active{background:var(--carousel-a);border-color:var(--carousel-a);box-shadow:0 0 15px var(--carousel-a)}
+.carousel-side-note{margin-top:26px;font-size:13px;color:var(--carousel-a);line-height:1.5}
+.carousel-side-note span{color:#7f778c}
+.carousel-bottom{position:absolute;left:clamp(24px,5vw,82px);right:clamp(24px,5vw,82px);bottom:20px}
+@keyframes carousel-screen-glow{to{transform:rotate(360deg)}}
+@media(max-width:760px){
+ .phone-carousel{height:100svh;min-height:650px;padding:20px 18px}
+ .carousel-layout{height:calc(100% - 48px);grid-template-columns:1fr 54px;grid-template-rows:auto 1fr;gap:0 8px}
+ .carousel-copy{grid-column:1/-1;grid-row:1;max-width:100%;padding-top:24px}
+ .carousel-kicker{margin-bottom:12px}
+ .carousel-title{font-size:clamp(38px,10vw,58px);margin-bottom:10px}
+ .carousel-description{font-size:12px;line-height:1.55;min-height:42px;max-width:95%}
+ .carousel-meta{margin-top:12px}
+ .carousel-controls{margin-top:14px}
+ .carousel-arrow{width:43px;height:43px}
+ .carousel-hint{display:none}
+ .carousel-stage{grid-column:1;grid-row:2;min-height:320px;height:100%;align-self:stretch}
+ .carousel-phone{width:clamp(150px,40vw,195px);height:clamp(300px,78vw,390px);border-radius:31px}
+ .carousel-phone-screen{border-radius:24px}
+ .carousel-phone-camera{width:68px;height:68px;border-radius:17px}
+ .carousel-phone-camera i{width:21px;height:21px}
+ .carousel-side{grid-column:2;grid-row:2;justify-self:center}
+ .carousel-ring,.carousel-halo{width:220px}
+ .carousel-ghost-word{font-size:22vw}
+ .carousel-bottom{font-size:8px;bottom:12px}
+}
+@media(prefers-reduced-motion:reduce){.carousel-phone-wrap,.carousel-arrow{transition:none}.carousel-phone-screen:before{animation:none}}
+
+
+/* High-energy animated transitions for each phone change */
+.carousel-phone-wrap{transform-style:preserve-3d;will-change:transform,opacity;backface-visibility:visible}
+.carousel-title,.carousel-description{will-change:transform,opacity}
+.carousel-arrow{position:relative;overflow:hidden}
+.carousel-arrow:before{content:"";position:absolute;inset:0;border-radius:50%;background:linear-gradient(135deg,var(--carousel-a),var(--carousel-b));transform:scale(0);transition:transform .28s cubic-bezier(.2,.8,.2,1);z-index:0}
+.carousel-arrow:hover:before{transform:scale(1)}
+.carousel-arrow span{position:relative;z-index:1}
+.carousel-arrow:active{transform:scale(.94)}
+.carousel-dot{transition:transform .25s,box-shadow .25s,background .25s}
+.carousel-dot.active{transform:scale(1.35)}
+.carousel-stage:after{content:"";position:absolute;inset:10%;border-radius:50%;background:radial-gradient(circle,transparent 40%,#ffffff08 70%,transparent 72%);pointer-events:none}
+@media(prefers-reduced-motion:reduce){
+ .carousel-phone-wrap,.carousel-title,.carousel-description{will-change:auto}
+ .carousel-arrow:before{transition:none}
+}
+
 </style>
 </head>
 <body>
@@ -91,12 +314,86 @@ body.on-home .hero:before{display:none}
 </section>
 
 <section class="page" id="page-iphone"><div class="content">
+
+  <section class="phone-carousel iphone-carousel" data-carousel="iphone">
+    <div class="carousel-topline"><span>PHONESTOCK / IPHONE COLLECTION</span><span>01 — 03</span></div>
+    <div class="carousel-layout">
+      <div class="carousel-copy">
+        <div class="carousel-kicker">iPhone collection</div>
+        <h1 class="carousel-title">iPhone 11</h1>
+        <p class="carousel-description">A classic design with a dual-camera system and all-day performance.</p>
+        <div class="carousel-meta"><span class="carousel-model-count">01 / 03</span><span class="carousel-dash"></span><span>Explore the range</span></div>
+        <div class="carousel-controls">
+          <button class="carousel-arrow prev" type="button" aria-label="Previous phone"><span>←</span></button>
+          <button class="carousel-arrow next" type="button" aria-label="Next phone"><span>→</span></button>
+        </div>
+        <div class="carousel-hint">Use the arrows to switch models</div>
+      </div>
+      <div class="carousel-stage" aria-label="3D phone product carousel">
+        <div class="carousel-halo"></div><div class="carousel-ring"></div>
+        <div class="carousel-ghost-word">iPhone</div>
+        <div class="carousel-phone-wrap">
+          <div class="carousel-phone">
+            <div class="carousel-phone-screen"></div>
+            <div class="carousel-phone-notch"></div>
+            <div class="carousel-phone-camera"><i></i><i></i><i></i></div>
+            <div class="carousel-phone-side"></div>
+          </div>
+        </div>
+        <div class="carousel-floor"></div>
+        <div class="carousel-product-label">iPhone 11</div>
+      </div>
+      <div class="carousel-side">
+        <div class="carousel-side-label">SELECT MODEL</div>
+        <div class="carousel-dots"><button class="carousel-dot active" aria-label="Model 1"></button><button class="carousel-dot" aria-label="Model 2"></button><button class="carousel-dot" aria-label="Model 3"></button></div>
+        <div class="carousel-side-note">01<br><span>03</span></div>
+      </div>
+    </div>
+    <div class="carousel-bottom"><span>Find your next iPhone.</span><span>PHONE STOCK · IPHONE COLLECTION</span></div>
+  </section>
   <div class="content-head"><div><h1>iPhone Stock</h1><div class="muted">Browse available iPhones</div></div><button class="btn" id="iphoneLogin">Admin login</button></div>
   <div id="iphoneStats"></div><div class="toolbar"><input id="iphoneSearch" placeholder="Search model, storage, colour..."><select id="iphoneStatus"><option value="">All stock</option><option>Available</option><option>Sold</option></select></div>
   <div class="phone-list" id="iphoneList"><div class="empty">Loading iPhone stock...</div></div>
 </div></section>
 
 <section class="page" id="page-android"><div class="content">
+
+  <section class="phone-carousel android-carousel" data-carousel="android">
+    <div class="carousel-topline"><span>PHONESTOCK / ANDROID COLLECTION</span><span>01 — 03</span></div>
+    <div class="carousel-layout">
+      <div class="carousel-copy">
+        <div class="carousel-kicker">Android collection</div>
+        <h1 class="carousel-title">Samsung Galaxy S21</h1>
+        <p class="carousel-description">A bold flagship with a vivid display and versatile camera system.</p>
+        <div class="carousel-meta"><span class="carousel-model-count">01 / 03</span><span class="carousel-dash"></span><span>Explore the range</span></div>
+        <div class="carousel-controls">
+          <button class="carousel-arrow prev" type="button" aria-label="Previous phone"><span>←</span></button>
+          <button class="carousel-arrow next" type="button" aria-label="Next phone"><span>→</span></button>
+        </div>
+        <div class="carousel-hint">Use the arrows to switch models</div>
+      </div>
+      <div class="carousel-stage" aria-label="3D phone product carousel">
+        <div class="carousel-halo"></div><div class="carousel-ring"></div>
+        <div class="carousel-ghost-word">ANDROID</div>
+        <div class="carousel-phone-wrap">
+          <div class="carousel-phone">
+            <div class="carousel-phone-screen"></div>
+            <div class="carousel-phone-notch"></div>
+            <div class="carousel-phone-camera"><i></i><i></i><i></i></div>
+            <div class="carousel-phone-side"></div>
+          </div>
+        </div>
+        <div class="carousel-floor"></div>
+        <div class="carousel-product-label">Samsung Galaxy S21</div>
+      </div>
+      <div class="carousel-side">
+        <div class="carousel-side-label">SELECT MODEL</div>
+        <div class="carousel-dots"><button class="carousel-dot active" aria-label="Model 1"></button><button class="carousel-dot" aria-label="Model 2"></button><button class="carousel-dot" aria-label="Model 3"></button></div>
+        <div class="carousel-side-note">01<br><span>03</span></div>
+      </div>
+    </div>
+    <div class="carousel-bottom"><span>Explore the Android lineup.</span><span>PHONE STOCK · ANDROID COLLECTION</span></div>
+  </section>
   <div class="content-head"><div><h1>Android Stock</h1><div class="muted">Browse Samsung, Google Pixel, OnePlus and more</div></div><button class="btn" id="androidLogin">Admin login</button></div>
   <div id="androidStats"></div><div class="toolbar"><input id="androidSearch" placeholder="Search brand, model, storage, colour..."><select id="androidStatus"><option value="">All stock</option><option>Available</option><option>Sold</option></select></div>
   <div class="phone-list" id="androidList"><div class="empty">Loading Android stock...</div></div>
@@ -154,6 +451,106 @@ document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>$ (b.dataset.
 $('analyticsRefresh').onclick=updateAnalytics;
 function updateAnalytics(){const i=state.items.iphone.length,a=state.items.android.length;$('aIphone').textContent=i;$('aAndroid').textContent=a;$('aTotal').textContent=i+a}
 showRoute(location.hash.slice(1)||'home');
+</script>
+
+
+
+<script>
+
+// Fully animated horizontal 3D phone carousel (no scroll interaction required).
+const phoneCarouselModels = {
+  iphone: [
+    {name:"iPhone 11",desc:"A classic iPhone design with a dual-camera system, Liquid Retina display and dependable everyday performance.",finish:"linear-gradient(135deg,#d9f0d2,#7b9b76 38%,#141b17 72%,#b5d7aa)",screen:"radial-gradient(circle at 45% 28%,#b6f6c6 0,#419a73 25%,#1e4540 60%,#080812 90%)"},
+    {name:"iPhone 12",desc:"A refined flat-edge design, Super Retina XDR display and a capable dual-camera system in a slim profile.",finish:"linear-gradient(135deg,#d8dce8,#7a8294 38%,#171a24 72%,#c5cad8)",screen:"radial-gradient(circle at 45% 28%,#b8d8ff 0,#5279c7 25%,#292d68 60%,#080812 90%)"},
+    {name:"iPhone 13",desc:"A brighter display, improved camera experience and a powerful everyday iPhone with a polished finish.",finish:"linear-gradient(135deg,#f5d7d7,#b56d79 38%,#24131b 72%,#e3b6c1)",screen:"radial-gradient(circle at 45% 28%,#ffc4d1 0,#bd5a87 25%,#45234c 60%,#080812 90%)"}
+  ],
+  android: [
+    {name:"Samsung Galaxy S21",desc:"A striking flagship design with a vivid AMOLED display and a versatile multi-camera setup.",finish:"linear-gradient(135deg,#e7c9ee,#77618e 38%,#171426 72%,#c9b0df)",screen:"radial-gradient(circle at 45% 28%,#e2c4ff 0,#8058c6 25%,#32235f 60%,#080812 90%)"},
+    {name:"Samsung Galaxy S22",desc:"A compact premium Android experience with a bright display, refined design and flexible cameras.",finish:"linear-gradient(135deg,#d9e6f3,#637d9c 38%,#101a2a 72%,#a9c5e4)",screen:"radial-gradient(circle at 45% 28%,#b8e0ff 0,#477ebd 25%,#23345f 60%,#080812 90%)"},
+    {name:"Samsung Galaxy S23",desc:"A polished flagship with powerful performance, detailed photography and a clean premium finish.",finish:"linear-gradient(135deg,#d5eadf,#678d7c 38%,#111e19 72%,#b3d8c5)",screen:"radial-gradient(circle at 45% 28%,#b6f3d6 0,#418b7b 25%,#1d484b 60%,#080812 90%)"}
+  ]
+};
+
+document.querySelectorAll('[data-carousel]').forEach(carousel=>{
+  const kind=carousel.dataset.carousel;
+  const models=phoneCarouselModels[kind]||[];
+  let index=0,locked=false;
+  const wrap=carousel.querySelector('.carousel-phone-wrap');
+  const shell=carousel.querySelector('.carousel-phone');
+  const screen=carousel.querySelector('.carousel-phone-screen');
+  const title=carousel.querySelector('.carousel-title');
+  const desc=carousel.querySelector('.carousel-description');
+  const count=carousel.querySelector('.carousel-model-count');
+  const label=carousel.querySelector('.carousel-product-label');
+  const dots=[...carousel.querySelectorAll('.carousel-dot')];
+  const sideNote=carousel.querySelector('.carousel-side-note');
+  const stage=carousel.querySelector('.carousel-stage');
+
+  function applyModel(model,nextIndex){
+    title.textContent=model.name;
+    desc.textContent=model.desc;
+    label.textContent=model.name;
+    count.textContent=String(nextIndex+1).padStart(2,'0')+' / 03';
+    sideNote.innerHTML=String(nextIndex+1).padStart(2,'0')+'<br><span>03</span>';
+    shell.style.background=model.finish;
+    screen.style.background=model.screen;
+    dots.forEach((dot,i)=>dot.classList.toggle('active',i===nextIndex));
+    stage.dataset.currentModel=String(nextIndex+1);
+  }
+
+  function changeModel(step){
+    if(locked||!models.length)return;
+    locked=true;
+    const direction=step>0?1:-1;
+    const next=(index+step+models.length)%models.length;
+    const outgoingX=direction>0?-135:135;
+    const incomingX=direction>0?135:-135;
+
+    // Animate the outgoing phone away in depth and to the selected side.
+    const exit=wrap.animate([
+      {transform:'translate3d(0,0,0) rotateY(-24deg) rotateX(7deg) rotateZ(-7deg) scale(1)',opacity:1,filter:'blur(0px)'},
+      {transform:`translate3d(${outgoingX}px,18px,-150px) rotateY(${direction>0?-62:18}deg) rotateX(15deg) rotateZ(${direction>0?-17:7}deg) scale(.78)`,opacity:0,filter:'blur(5px)'}
+    ],{duration:390,easing:'cubic-bezier(.65,0,.85,.35)',fill:'forwards'});
+
+    // Animate the copy and ambient lighting in the same direction.
+    title.animate([{opacity:1,transform:'translateX(0)'},{opacity:0,transform:`translateX(${direction>0?-35:35}px)`}],{duration:220,easing:'ease-in',fill:'forwards'});
+    desc.animate([{opacity:1,transform:'translateX(0)'},{opacity:0,transform:`translateX(${direction>0?-24:24}px)`}],{duration:200,easing:'ease-in',fill:'forwards'});
+    stage.animate([{filter:'hue-rotate(0deg)'},{filter:`hue-rotate(${direction*28}deg)`}],{duration:650,easing:'ease-in-out'});
+
+    exit.onfinish=()=>{
+      index=next;
+      applyModel(models[index],index);
+      // Place the incoming model on the opposite side, then sweep it into focus.
+      const entry=wrap.animate([
+        {transform:`translate3d(${incomingX}px,-12px,-180px) rotateY(${direction>0?48:-48}deg) rotateX(-8deg) rotateZ(${direction>0?12:-12}deg) scale(.78)`,opacity:0,filter:'blur(7px)'},
+        {transform:'translate3d(0,0,0) rotateY(-24deg) rotateX(7deg) rotateZ(-7deg) scale(1)',opacity:1,filter:'blur(0px)'}
+      ],{duration:650,easing:'cubic-bezier(.16,1,.3,1)',fill:'both'});
+
+      title.animate([{opacity:0,transform:`translateX(${direction>0?35:-35}px)`},{opacity:1,transform:'translateX(0)'}],{duration:430,delay:80,easing:'cubic-bezier(.16,1,.3,1)',fill:'both'});
+      desc.animate([{opacity:0,transform:`translateX(${direction>0?24:-24}px)`},{opacity:1,transform:'translateX(0)'}],{duration:460,delay:130,easing:'cubic-bezier(.16,1,.3,1)',fill:'both'});
+      label.animate([{opacity:0,letterSpacing:'.45em'},{opacity:1,letterSpacing:'.2em'}],{duration:500,easing:'ease-out'});
+      entry.onfinish=()=>{locked=false;};
+      // Safety unlock for browsers that do not fire animation finish events.
+      setTimeout(()=>{locked=false;},760);
+    };
+    setTimeout(()=>{if(locked&&index!==next){index=next;applyModel(models[index],index);locked=false;}},1250);
+  }
+
+  carousel.querySelector('.carousel-arrow.prev').addEventListener('click',()=>changeModel(-1));
+  carousel.querySelector('.carousel-arrow.next').addEventListener('click',()=>changeModel(1));
+  dots.forEach((dot,i)=>dot.addEventListener('click',()=>changeModel((i-index+models.length)%models.length || (i===index?0:1))));
+  applyModel(models[0],0);
+});
+
+// Keyboard arrow support while a carousel is in view.
+document.addEventListener('keydown',event=>{
+  if(!['ArrowLeft','ArrowRight'].includes(event.key))return;
+  const visible=[...document.querySelectorAll('[data-carousel]')].find(el=>{
+    const r=el.getBoundingClientRect();return r.top<innerHeight*.75&&r.bottom>innerHeight*.25;
+  });
+  if(visible){event.preventDefault();visible.querySelector(event.key==='ArrowRight'?'.carousel-arrow.next':'.carousel-arrow.prev').click();}
+});
+
 </script>
 </body>
 </html>
