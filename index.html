@@ -36,10 +36,11 @@ a{color:inherit;text-decoration:none}
 .content{max-width:1150px;margin:auto;padding:34px 20px 70px;color:var(--text)}
 .content-head{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:22px}
 .content h1{margin:0;font-size:32px}.muted{color:var(--muted)}
-.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}.toolbar input,.toolbar select,.field{background:#17152a;border:1px solid var(--line);color:white;border-radius:10px;padding:11px 13px}.toolbar input{flex:1;min-width:220px}
+.toolbar{display:none!important;display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}.toolbar input,.toolbar select,.field{background:#17152a;border:1px solid var(--line);color:white;border-radius:10px;padding:11px 13px}.toolbar input{flex:1;min-width:220px}
 .btn{border:0;border-radius:10px;background:linear-gradient(90deg,#f97316,#db3eae);color:white;padding:11px 16px;font-weight:750}.btn.secondary{background:#28243d;border:1px solid var(--line)}.btn.danger{background:#b91c1c}
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0}.stat,.phone-card{background:#17152a;border:1px solid var(--line);border-radius:15px;padding:16px}.stat span{display:block;color:var(--muted);font-size:13px}.stat b{font-size:23px}
-.phone-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}.phone-card{cursor:pointer}.phone-card:hover{border-color:#a855f7}.phone-name{font-weight:800;font-size:18px}.phone-meta{color:var(--muted);font-size:13px;margin:5px 0 12px}.price{font-size:21px;font-weight:850}.pill{display:inline-block;border:1px solid currentColor;border-radius:20px;padding:3px 9px;font-size:11px;margin:4px 4px 0 0}.available{color:var(--green)}.sold{color:var(--red)}.details{border-top:1px solid var(--line);margin-top:12px;padding-top:9px;font-size:13px;color:var(--muted);line-height:1.8}.empty{padding:35px;text-align:center;color:var(--muted);grid-column:1/-1}
+#page-iphone > .content > .content-head,#page-iphone #iphoneStats,#page-android > .content > .content-head,#page-android #androidStats{display:none!important}
+.phone-list{display:none!important;grid-template-columns:grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}.phone-card{cursor:pointer}.phone-card:hover{border-color:#a855f7}.phone-name{font-weight:800;font-size:18px}.phone-meta{color:var(--muted);font-size:13px;margin:5px 0 12px}.price{font-size:21px;font-weight:850}.pill{display:inline-block;border:1px solid currentColor;border-radius:20px;padding:3px 9px;font-size:11px;margin:4px 4px 0 0}.available{color:var(--green)}.sold{color:var(--red)}.details{border-top:1px solid var(--line);margin-top:12px;padding-top:9px;font-size:13px;color:var(--muted);line-height:1.8}.empty{padding:35px;text-align:center;color:var(--muted);grid-column:1/-1}
 .modal{position:fixed;inset:0;background:#000b;display:none;align-items:center;justify-content:center;padding:18px;z-index:20}.modal.open{display:flex}.modal-box{width:min(600px,100%);max-height:90vh;overflow:auto;background:#17152a;border:1px solid var(--line);border-radius:18px;padding:20px}.modal-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.modal label{display:block;color:var(--muted);font-size:12px;margin:10px 0 5px}.modal input,.modal select,.modal textarea{width:100%;background:#0d0b19;color:white;border:1px solid var(--line);border-radius:9px;padding:10px}.modal textarea{min-height:70px}.modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:16px;flex-wrap:wrap}
 .footer{text-align:center;color:#aaa3bd;font-size:12px;padding:22px;border-top:1px solid #ffffff12}
 @media(max-width:760px){.site-header{height:auto;min-height:72px;flex-wrap:wrap;padding:14px 18px}.nav{order:3;width:100%;justify-content:center;padding-top:5px}.search-top{width:150px}.hero{min-height:calc(100vh - 115px);padding:30px 12px 50px}.hero-title{top:7%;font-size:clamp(32px,8vw,55px);letter-spacing:-1.5px}.hero-side{min-height:510px;padding-bottom:15px}.phone-art{top:26%;height:34%;gap:0}.device{width:clamp(75px,19vw,125px);height:clamp(165px,40vw,250px)}.hero-side h2{font-size:30px}.hero-side p{font-size:13px}.explore{padding:11px 22px;font-size:14px}.stats{grid-template-columns:1fr 1fr}.stats .stat:last-child{grid-column:1/-1}}
@@ -270,6 +271,8 @@ body.on-home .hero:before{display:none}
 }
 @media(prefers-reduced-motion:reduce){.carousel-phone-wrap,.carousel-arrow{transition:none}.carousel-phone-screen:before{animation:none}}
 
+
+.carousel-live-meta{margin-top:18px;color:var(--muted);font-size:14px;line-height:1.8}.carousel-live-meta .live-price{display:block;color:var(--text);font-size:24px;font-weight:850;margin-top:4px}.carousel-live-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}.carousel-live-actions button{cursor:pointer}.details-panel{line-height:1.9;color:var(--muted);font-size:14px}.details-panel .detail-row{display:flex;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line);padding:7px 0}.details-panel .detail-row strong{color:var(--text);text-align:right}.carousel-empty{color:var(--muted);margin-top:18px}
 </style>
 </head>
 <body>
@@ -305,6 +308,7 @@ body.on-home .hero:before{display:none}
         <div class="carousel-kicker">iPhone collection</div>
         <h1 class="carousel-title">iPhone 11</h1>
         <p class="carousel-description">A classic design with a dual-camera system and all-day performance.</p>
+        <div class="carousel-live-meta" data-live-meta="iphone"></div><div class="carousel-live-actions"><button class="btn" type="button" data-view-details="iphone">View details</button><button class="btn secondary" type="button" data-edit-selected="iphone" style="display:none">Edit phone & health</button></div>
         <div class="carousel-meta"><span class="carousel-model-count">01 / 03</span><span class="carousel-dash"></span><span>Explore the range</span></div>
         <div class="carousel-controls">
           <button class="carousel-arrow prev" type="button" aria-label="Previous phone"><span>←</span></button>
@@ -348,6 +352,7 @@ body.on-home .hero:before{display:none}
         <div class="carousel-kicker">Android collection</div>
         <h1 class="carousel-title">Samsung Galaxy S21</h1>
         <p class="carousel-description">A bold flagship with a vivid display and versatile camera system.</p>
+        <div class="carousel-live-meta" data-live-meta="android"></div><div class="carousel-live-actions"><button class="btn" type="button" data-view-details="android">View details</button><button class="btn secondary" type="button" data-edit-selected="android" style="display:none">Edit phone & health</button></div>
         <div class="carousel-meta"><span class="carousel-model-count">01 / 03</span><span class="carousel-dash"></span><span>Explore the range</span></div>
         <div class="carousel-controls">
           <button class="carousel-arrow prev" type="button" aria-label="Previous phone"><span>←</span></button>
@@ -390,6 +395,8 @@ body.on-home .hero:before{display:none}
 </main>
 <footer class="footer">© <span id="year"></span> PhoneStock</footer>
 
+
+<div class="modal" id="stockDetailsModal"><div class="modal-box"><h2 id="stockDetailsTitle">Phone details</h2><div id="stockDetailsBody" class="details-panel"></div><div class="modal-actions"><button class="btn secondary" data-close="stockDetailsModal">Close</button></div></div></div>
 <div class="modal" id="loginModal"><div class="modal-box"><h2 id="loginHeading">Admin login</h2><p class="muted" id="loginMessage">Enter your admin password.</p><label>Password</label><input id="loginPassword" type="password" autocomplete="current-password"><p id="loginError" style="color:#fb7185"></p><div class="modal-actions"><button class="btn secondary" data-close="loginModal">Cancel</button><button class="btn" id="loginSubmit">Continue</button></div></div></div>
 <div class="modal" id="phoneModal"><div class="modal-box"><h2 id="phoneFormTitle">Add phone</h2><div class="modal-grid">
   <div><label>Brand</label><select id="fBrand"><option>Apple</option><option>Samsung</option><option>Google</option><option>OnePlus</option><option>Xiaomi</option><option>Motorola</option><option>Other</option></select></div>
@@ -430,10 +437,10 @@ $('year').textContent=new Date().getFullYear();
 async function api(kind,method,url,body){const headers={'Content-Type':'application/json'};if(state.tokens[kind])headers.Authorization='Bearer '+state.tokens[kind];const r=await fetch(url,{method,headers,body:body?JSON.stringify(body):undefined});let j={};try{j=await r.json()}catch(e){}if(r.status===401&&state.tokens[kind])logout(kind);if(!r.ok)throw Error(j.error||'Request failed');return j}
 function logout(kind){state.tokens[kind]=null;state.admin[kind]=false;try{sessionStorage.removeItem(kind+'Tok')}catch(e){}loadStock(kind)}
 function readHealthCache(kind){try{return JSON.parse(localStorage.getItem('phonestock-health-'+kind)||'{}')}catch(e){return {}}}
-function writeHealthCache(kind,id,record){if(id===undefined||id===null||id==='')return;try{const cache=readHealthCache(kind);cache[String(id)]={battery:record.battery,batteryCycles:record.batteryCycles,screenHealth:record.screenHealth,cameraHealth:record.cameraHealth,biometricHealth:record.biometricHealth,chargingHealth:record.chargingHealth,audioHealth:record.audioHealth,bodyHealth:record.bodyHealth,waterDamage:record.waterDamage,overallHealth:record.overallHealth,repairHistory:record.repairHistory,notes:record.notes};localStorage.setItem('phonestock-health-'+kind,JSON.stringify(cache))}catch(e){console.warn('Could not save local health details',e)}}
-function mergeHealthCache(kind,items){const cache=readHealthCache(kind);return items.map(item=>({...item,...(cache[String(item.id)]||{})}))}
+function writeHealthCache(kind,id,record){if(id===undefined||id===null||id==='')return;try{const cache=readHealthCache(kind);cache[String(id)]={...record,price:Number(record.price??record.sell??0),sell:Number(record.price??record.sell??0)};localStorage.setItem('phonestock-health-'+kind,JSON.stringify(cache))}catch(e){console.warn('Could not save phone details locally',e)}}
+function mergeHealthCache(kind,items){const cache=readHealthCache(kind);return items.map(item=>{const saved=cache[String(item.id??item._id)]||{};const merged={...item,...saved};const price= item.price??item.sell??saved.price??saved.sell??0;merged.price=Number(price)||0;merged.sell=merged.price;return merged})}
 function getSavedRecordId(result){const r=result?.phone||result?.item||result?.record||result?.data||result;return r?.id??r?._id??result?.id??result?._id??null}
-async function loadStock(kind){const list=$(kind+'List');list.innerHTML='<div class="empty">Loading stock...</div>';try{const result=await api(kind,'GET',state.admin[kind]?API[kind].admin:API[kind].public);const records=Array.isArray(result)?result:(result.phones||result.items||result.data||[]);state.items[kind]=mergeHealthCache(kind,records);renderStock(kind);updateAnalytics()}catch(e){list.innerHTML='<div class="empty">Could not load stock. Check that the API server is running and the endpoint is configured.</div>'}}
+async function loadStock(kind){const list=$(kind+'List');list.innerHTML='<div class="empty">Loading stock...</div>';try{const result=await api(kind,'GET',state.admin[kind]?API[kind].admin:API[kind].public);const records=Array.isArray(result)?result:(result.phones||result.items||result.data||[]);state.items[kind]=mergeHealthCache(kind,records);renderStock(kind);updateAnalytics();if(window.refreshPhoneCarousel)window.refreshPhoneCarousel(kind)}catch(e){list.innerHTML='<div class="empty">Could not load stock. Check that the API server is running and the endpoint is configured.</div>'}}
 function renderStock(kind){const admin=state.admin[kind],term=$(kind+'Search').value.trim().toLowerCase(),status=$(kind+'Status').value;let items=state.items[kind].filter(i=>[i.model,i.brand,i.storage,i.color,i.condition||i.cond].join(' ').toLowerCase().includes(term)&&(!status||i.status===status));items.sort((a,b)=>(a.status==='Sold')-(b.status==='Sold'));$(kind+'Login').textContent=admin?'Log out':'Admin login';let available=state.items[kind].filter(i=>i.status!=='Sold').length;$(kind+'Stats').innerHTML=admin?`<div class="stats"><div class="stat"><span>Available</span><b>${available}</b></div><div class="stat"><span>Total records</span><b>${state.items[kind].length}</b></div><div class="stat"><span>Sold</span><b>${state.items[kind].length-available}</b></div></div>`:'';if(!items.length){$(kind+'List').innerHTML='<div class="empty">No phones found.</div>';return}$(kind+'List').innerHTML=items.map(i=>{const health=[['Battery',i.battery||i.bat?`${i.battery||i.bat}%`:'' ],['Cycles',i.batteryCycles??i.cycles],['Screen',i.screenHealth],['Camera',i.cameraHealth],['Face ID / Fingerprint',i.biometricHealth],['Charging',i.chargingHealth],['Speaker / Mic',i.audioHealth],['Body',i.bodyHealth],['Water damage',i.waterDamage],['Overall health',i.overallHealth]].filter(x=>x[1]!==undefined&&x[1]!==null&&x[1]!=='');return `<article class="phone-card"><div class="phone-name">${esc(i.model||'Unnamed phone')}</div><div class="phone-meta">${esc(i.brand|| (kind==='iphone'?'Apple':'Android'))} · ${esc(i.storage||'—')} · ${esc(i.color||'—')} · ${esc(i.condition||i.cond||'—')}</div><span class="pill ${i.status==='Sold'?'sold':'available'}">${esc(i.status||'Available')}</span><div class="price">${inr(i.price??i.sell)}</div>${health.length?`<div class="details"><strong>Device health</strong><br>${health.map(x=>`<span>${esc(x[0])}: ${esc(x[1])}</span>`).join(' · ')}</div>`:''}${i.repairHistory?`<div class="details"><strong>Repair / service history:</strong> ${esc(i.repairHistory)}</div>`:''}${i.notes?`<div class="details">${esc(i.notes)}</div>`:''}${admin?`<div class="details">Admin view · Record ID: ${esc(i.id??'Not supplied')}</div><button class="btn secondary" type="button" data-edit-phone="${esc(i.id??'')}">Edit phone & health</button>`:''}</article>`}).join('');if(admin)$(kind+'List').querySelectorAll('[data-edit-phone]').forEach(b=>b.onclick=()=>openPhoneEditor(kind,b.dataset.editPhone));}
 async function beginLogin(kind){if(state.admin[kind]){logout(kind);return}state.edit={kind};$('loginHeading').textContent=kind==='iphone'?'iPhone admin login':'Android admin login';$('loginPassword').value='';$('loginError').textContent='';$('loginModal').classList.add('open')}
 $('iphoneLogin').onclick=()=>beginLogin('iphone');$('androidLogin').onclick=()=>beginLogin('android');
@@ -444,7 +451,7 @@ $('globalSearch').addEventListener('keydown',e=>{if(e.key==='Enter'){const q=e.t
 function resetPhoneForm(){['fModel','fColor','fBattery','fCycles','fPrice','fNotes','fRepairs'].forEach(id=>$(id).value='');['fScreen','fCamera','fBiometric','fCharging','fAudio','fBody','fWater','fOverall'].forEach(id=>$(id).value='');$('fStorage').selectedIndex=1;$('fCondition').selectedIndex=0;$('fStatus').value='Available'}
 function openPhoneEditor(kind,id){if(!state.admin[kind])return;const phone=state.items[kind].find(x=>String(x.id)===String(id));if(!phone)return;state.edit={kind,id:String(id)};$('phoneFormTitle').textContent='Edit '+(kind==='iphone'?'iPhone':'Android phone')+' · '+(phone.model||'Phone');$('fBrand').value=phone.brand|| (kind==='iphone'?'Apple':'Samsung');$('fModel').value=phone.model||'';$('fStorage').value=phone.storage||'128GB';$('fColor').value=phone.color||'';$('fCondition').value=phone.condition||phone.cond||'Used';$('fStatus').value=phone.status||'Available';$('fBattery').value=phone.battery??phone.bat??'';$('fCycles').value=phone.batteryCycles??phone.cycles??'';$('fScreen').value=phone.screenHealth||'';$('fCamera').value=phone.cameraHealth||'';$('fBiometric').value=phone.biometricHealth||'';$('fCharging').value=phone.chargingHealth||'';$('fAudio').value=phone.audioHealth||'';$('fBody').value=phone.bodyHealth||'';$('fWater').value=phone.waterDamage||'';$('fOverall').value=phone.overallHealth||'';$('fPrice').value=phone.price??phone.sell??'';$('fRepairs').value=phone.repairHistory||'';$('fNotes').value=phone.notes||'';$('phoneError').textContent='';$('phoneModal').classList.add('open')}
 $('addPhone').onclick=()=>{const kind=state.route;state.edit={kind,id:null};resetPhoneForm();$('phoneFormTitle').textContent='Add '+(kind==='iphone'?'iPhone':'Android phone');$('fBrand').value=kind==='iphone'?'Apple':'Samsung';$('phoneError').textContent='';$('phoneModal').classList.add('open')};
-$('phoneSave').onclick=async()=>{const kind=state.edit?.kind||state.route;const rec={brand:$('fBrand').value,model:$('fModel').value.trim(),storage:$('fStorage').value,color:$('fColor').value.trim(),condition:$('fCondition').value,status:$('fStatus').value,battery:$('fBattery').value===''?null:Number($('fBattery').value),batteryCycles:$('fCycles').value===''?null:Number($('fCycles').value),screenHealth:$('fScreen').value,cameraHealth:$('fCamera').value,biometricHealth:$('fBiometric').value,chargingHealth:$('fCharging').value,audioHealth:$('fAudio').value,bodyHealth:$('fBody').value,waterDamage:$('fWater').value,overallHealth:$('fOverall').value,repairHistory:$('fRepairs').value.trim(),price:Number($('fPrice').value||0),notes:$('fNotes').value.trim()};if(!state.admin[kind])return;if(!rec.model||!Number.isFinite(rec.price)||rec.price<0){$('phoneError').textContent='Enter a model and valid selling price.';return}try{let saved;if(state.edit?.id){saved=await api(kind,'PUT',API[kind].admin+'/'+encodeURIComponent(state.edit.id),{...rec,id:state.edit.id});writeHealthCache(kind,state.edit.id,rec)}else{saved=await api(kind,'POST',API[kind].admin,rec);const newId=getSavedRecordId(saved);if(newId!==null)writeHealthCache(kind,newId,rec)}$('phoneModal').classList.remove('open');state.edit={kind};await loadStock(kind)}catch(e){$('phoneError').textContent=e.message}};
+$('phoneSave').onclick=async()=>{const kind=state.edit?.kind||state.route;const rec={brand:$('fBrand').value,model:$('fModel').value.trim(),storage:$('fStorage').value,color:$('fColor').value.trim(),condition:$('fCondition').value,status:$('fStatus').value,battery:$('fBattery').value===''?null:Number($('fBattery').value),batteryCycles:$('fCycles').value===''?null:Number($('fCycles').value),screenHealth:$('fScreen').value,cameraHealth:$('fCamera').value,biometricHealth:$('fBiometric').value,chargingHealth:$('fCharging').value,audioHealth:$('fAudio').value,bodyHealth:$('fBody').value,waterDamage:$('fWater').value,overallHealth:$('fOverall').value,repairHistory:$('fRepairs').value.trim(),price:Number($('fPrice').value||0),sell:Number($('fPrice').value||0),notes:$('fNotes').value.trim()};if(!state.admin[kind])return;if(!rec.model||!Number.isFinite(rec.price)||rec.price<0){$('phoneError').textContent='Enter a model and valid selling price.';return}try{let saved;if(state.edit?.id){saved=await api(kind,'PUT',API[kind].admin+'/'+encodeURIComponent(state.edit.id),{...rec,id:state.edit.id});writeHealthCache(kind,state.edit.id,rec)}else{saved=await api(kind,'POST',API[kind].admin,rec);const newId=getSavedRecordId(saved);if(newId!==null)writeHealthCache(kind,newId,rec)}$('phoneModal').classList.remove('open');state.edit={kind};await loadStock(kind)}catch(e){$('phoneError').textContent=e.message}};
 document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>$ (b.dataset.close).classList.remove('open'));
 $('analyticsRefresh').onclick=updateAnalytics;
 function updateAnalytics(){const i=state.items.iphone.length,a=state.items.android.length;$('aIphone').textContent=i;$('aAndroid').textContent=a;$('aTotal').textContent=i+a}
@@ -453,58 +460,33 @@ showRoute(location.hash.slice(1)||'home');
 
 
 <script>
-
-// Arrow and dot navigation: switch phone models without scrolling the page.
+// Live inventory drives the existing 3D carousel. No second stock-card section.
 const phoneCarouselModels = {
-  iphone: [
-    {name:"iPhone 11",desc:"A classic iPhone design with a dual-camera system, Liquid Retina display and dependable everyday performance.",finish:"linear-gradient(135deg,#d9f0d2,#7b9b76 38%,#141b17 72%,#b5d7aa)",screen:"radial-gradient(circle at 45% 28%,#b6f6c6 0,#419a73 25%,#1e4540 60%,#080812 90%)",camera:2},
-    {name:"iPhone 12",desc:"A refined flat-edge design, Super Retina XDR display and a capable dual-camera system in a slim profile.",finish:"linear-gradient(135deg,#d8dce8,#7a8294 38%,#171a24 72%,#c5cad8)",screen:"radial-gradient(circle at 45% 28%,#b8d8ff 0,#5279c7 25%,#292d68 60%,#080812 90%)",camera:2},
-    {name:"iPhone 13",desc:"A brighter display, improved camera experience and a powerful everyday iPhone with a polished finish.",finish:"linear-gradient(135deg,#f5d7d7,#b56d79 38%,#24131b 72%,#e3b6c1)",screen:"radial-gradient(circle at 45% 28%,#ffc4d1 0,#bd5a87 25%,#45234c 60%,#080812 90%)",camera:2}
-  ],
-  android: [
-    {name:"Samsung Galaxy S21",desc:"A striking flagship design with a vivid AMOLED display and a versatile multi-camera setup.",finish:"linear-gradient(135deg,#e7c9ee,#77618e 38%,#171426 72%,#c9b0df)",screen:"radial-gradient(circle at 45% 28%,#e2c4ff 0,#8058c6 25%,#32235f 60%,#080812 90%)",camera:3},
-    {name:"Samsung Galaxy S22",desc:"A compact premium Android experience with a bright display, refined design and flexible cameras.",finish:"linear-gradient(135deg,#d9e6f3,#637d9c 38%,#101a2a 72%,#a9c5e4)",screen:"radial-gradient(circle at 45% 28%,#b8e0ff 0,#477ebd 25%,#23345f 60%,#080812 90%)",camera:3},
-    {name:"Samsung Galaxy S23",desc:"A polished flagship with powerful performance, detailed photography and a clean premium finish.",finish:"linear-gradient(135deg,#d5eadf,#678d7c 38%,#111e19 72%,#b3d8c5)",screen:"radial-gradient(circle at 45% 28%,#b6f3d6 0,#418b7b 25%,#1d484b 60%,#080812 90%)",camera:3}
-  ]
+ iphone: [
+  {name:'iPhone 11',desc:'A classic iPhone design.',finish:'linear-gradient(135deg,#d9f0d2,#7b9b76 38%,#141b17 72%,#b5d7aa)',screen:'radial-gradient(circle at 45% 28%,#b6f6c6 0,#419a73 25%,#1e4540 60%,#080812 90%)',camera:2},
+  {name:'iPhone 12',desc:'A refined flat-edge iPhone.',finish:'linear-gradient(135deg,#d8dce8,#7a8294 38%,#171a24 72%,#c5cad8)',screen:'radial-gradient(circle at 45% 28%,#b8d8ff 0,#5279c7 25%,#292d68 60%,#080812 90%)',camera:2},
+  {name:'iPhone 13',desc:'A bright display and capable camera.',finish:'linear-gradient(135deg,#f5d7d7,#b56d79 38%,#24131b 72%,#e3b6c1)',screen:'radial-gradient(circle at 45% 28%,#ffc4d1 0,#bd5a87 25%,#45234c 60%,#080812 90%)',camera:2}
+ ],
+ android: [
+  {name:'Samsung Galaxy S21',desc:'A vivid AMOLED Android flagship.',finish:'linear-gradient(135deg,#e7c9ee,#77618e 38%,#171426 72%,#c9b0df)',screen:'radial-gradient(circle at 45% 28%,#e2c4ff 0,#8058c6 25%,#32235f 60%,#080812 90%)',camera:3},
+  {name:'Samsung Galaxy S22',desc:'A compact premium Android phone.',finish:'linear-gradient(135deg,#d9e6f3,#637d9c 38%,#101a2a 72%,#a9c5e4)',screen:'radial-gradient(circle at 45% 28%,#b8e0ff 0,#477ebd 25%,#23345f 60%,#080812 90%)',camera:3},
+  {name:'Samsung Galaxy S23',desc:'A polished flagship with detailed photography.',finish:'linear-gradient(135deg,#d5eadf,#678d7c 38%,#111e19 72%,#b3d8c5)',screen:'radial-gradient(circle at 45% 28%,#b6f3d6 0,#418b7b 25%,#1d484b 60%,#080812 90%)',camera:3}
+ ]
 };
-document.querySelectorAll('[data-carousel]').forEach(carousel=>{
-  const kind=carousel.dataset.carousel, models=phoneCarouselModels[kind]||[];
-  let index=0,animating=false;
-  const title=carousel.querySelector('.carousel-title');
-  const desc=carousel.querySelector('.carousel-description');
-  const count=carousel.querySelector('.carousel-model-count');
-  const label=carousel.querySelector('.carousel-product-label');
-  const wrap=carousel.querySelector('.carousel-phone-wrap');
-  const shell=carousel.querySelector('.carousel-phone');
-  const screen=carousel.querySelector('.carousel-phone-screen');
-  const dots=[...carousel.querySelectorAll('.carousel-dot')];
-  const sideNote=carousel.querySelector('.carousel-side-note');
-  const camera=carousel.querySelector('.carousel-phone-camera');
-  function render(next,direction=1){
-    if(animating||!models.length)return;
-    animating=true;
-    wrap.classList.remove('shift-left','shift-right');
-    wrap.classList.add(direction>0?'shift-left':'shift-right');
-    setTimeout(()=>{
-      index=(next+models.length)%models.length;
-      const model=models[index];
-      title.textContent=model.name;desc.textContent=model.desc;label.textContent=model.name;
-      count.textContent=String(index+1).padStart(2,'0')+' / 03';
-      sideNote.innerHTML=String(index+1).padStart(2,'0')+'<br><span>03</span>';
-      shell.style.background=model.finish;screen.style.background=model.screen;
-      camera.style.display=kind==='iphone'?'block':'block';
-      dots.forEach((dot,i)=>dot.classList.toggle('active',i===index));
-      wrap.classList.remove('shift-left','shift-right');
-      wrap.style.transform='translateX(0) rotateY(-24deg) rotateX(7deg) rotateZ(-7deg)';
-      animating=false;
-    },260);
-  }
-  carousel.querySelector('.carousel-arrow.prev').addEventListener('click',()=>render(index-1,-1));
-  carousel.querySelector('.carousel-arrow.next').addEventListener('click',()=>render(index+1,1));
-  dots.forEach((dot,i)=>dot.addEventListener('click',()=>render(i,i>index?1:-1)));
-  render(0,1);
-});
-
+const carouselState={iphone:{items:[],index:0},android:{items:[],index:0}};
+function modelVisual(kind,phone){const fallback=(phoneCarouselModels[kind]||[])[0]||{};return {...fallback,name:phone.model||phone.name||'Phone',desc:[phone.brand,phone.storage,phone.color,phone.condition||phone.cond].filter(Boolean).join(' · ')||fallback.desc,phone};}
+function healthRows(p){return [['Selling price',inr(p.price??p.sell)],['Brand',p.brand],['Model',p.model],['Storage',p.storage],['Colour',p.color],['Condition',p.condition||p.cond],['Status',p.status],['Battery health',p.battery??p.bat],['Battery cycles',p.batteryCycles??p.cycles],['Screen',p.screenHealth],['Camera',p.cameraHealth],['Face ID / Fingerprint',p.biometricHealth],['Charging port',p.chargingHealth],['Speaker / Mic',p.audioHealth],['Body condition',p.bodyHealth],['Water damage',p.waterDamage],['Overall health',p.overallHealth],['Repair history',p.repairHistory],['Notes',p.notes]].filter(x=>x[1]!==undefined&&x[1]!==null&&x[1]!=='').map(x=>[x[0],String(x[1])] );}
+function openStockDetails(kind){const st=carouselState[kind],p=st.items[st.index];if(!p)return;const rows=healthRows(p);$('stockDetailsTitle').textContent=(p.model||'Phone')+' · Details';$('stockDetailsBody').innerHTML=rows.map(([k,v])=>`<div class="detail-row"><span>${esc(k)}</span><strong>${esc(v)}</strong></div>`).join('')||'No additional details available.';$('stockDetailsModal').classList.add('open');}
+function refreshPhoneCarousel(kind){const carousel=document.querySelector(`[data-carousel="${kind}"]`);if(!carousel)return;const raw=(state.items[kind]||[]).filter(p=>p.status!=='Deleted');const st=carouselState[kind];const old=st.items[st.index];st.items=raw.map(p=>modelVisual(kind,p));if(old){const found=st.items.findIndex(x=>String(x.phone.id??x.phone._id)===String(old.phone.id??old.phone._id));st.index=found>=0?found:Math.min(st.index,Math.max(0,st.items.length-1));}else st.index=0;paintCarousel(kind);}
+function paintCarousel(kind){const carousel=document.querySelector(`[data-carousel="${kind}"]`);if(!carousel)return;const st=carouselState[kind],models=st.items;const title=carousel.querySelector('.carousel-title'),desc=carousel.querySelector('.carousel-description'),count=carousel.querySelector('.carousel-model-count'),label=carousel.querySelector('.carousel-product-label'),wrap=carousel.querySelector('.carousel-phone-wrap'),shell=carousel.querySelector('.carousel-phone'),screen=carousel.querySelector('.carousel-phone-screen'),camera=carousel.querySelector('.carousel-phone-camera'),sideNote=carousel.querySelector('.carousel-side-note'),dots=carousel.querySelector('.carousel-dots'),meta=carousel.querySelector('[data-live-meta]'),edit=carousel.querySelector('[data-edit-selected]');
+ if(!models.length){title.textContent=kind==='iphone'?'No iPhones added yet':'No Android phones added yet';desc.textContent='Admin can add stock and it will appear here in this 3D collection.';label.textContent='PhoneStock';count.textContent='00 / 00';sideNote.innerHTML='00<br><span>00</span>';meta.innerHTML='<div class="carousel-empty">No stock available yet.</div>';dots.innerHTML='';edit.style.display='none';return;}
+ const m=models[st.index],p=m.phone,total=models.length;title.textContent=m.name;desc.textContent=m.desc;label.textContent=m.name;count.textContent=String(st.index+1).padStart(2,'0')+' / '+String(total).padStart(2,'0');sideNote.innerHTML=String(st.index+1).padStart(2,'0')+'<br><span>'+String(total).padStart(2,'0')+'</span>';shell.style.background=m.finish;screen.style.background=m.screen;camera.style.display='block';meta.innerHTML=`<span>${esc(p.brand||'')} · ${esc(p.storage||'')} · ${esc(p.color||'')}</span><span class="live-price">${inr(p.price??p.sell)}</span><span class="pill ${p.status==='Sold'?'sold':'available'}">${esc(p.status||'Available')}</span>`;edit.style.display=state.admin[kind]?'inline-block':'none';dots.innerHTML=models.map((_,i)=>`<button class="carousel-dot ${i===st.index?'active':''}" type="button" aria-label="Show phone ${i+1}" data-carousel-index="${i}"></button>`).join('');dots.querySelectorAll('button').forEach(b=>b.onclick=()=>{st.index=Number(b.dataset.carouselIndex);paintCarousel(kind)});}
+function moveCarousel(kind,delta){const st=carouselState[kind];if(!st.items.length)return;st.index=(st.index+delta+st.items.length)%st.items.length;const wrap=document.querySelector(`[data-carousel="${kind}"] .carousel-phone-wrap`);wrap.classList.remove('shift-left','shift-right');wrap.classList.add(delta>0?'shift-left':'shift-right');setTimeout(()=>{wrap.classList.remove('shift-left','shift-right');paintCarousel(kind)},250);}
+document.querySelectorAll('[data-carousel]').forEach(c=>{const k=c.dataset.carousel;c.querySelector('.carousel-arrow.prev').onclick=()=>moveCarousel(k,-1);c.querySelector('.carousel-arrow.next').onclick=()=>moveCarousel(k,1);});
+document.querySelectorAll('[data-view-details]').forEach(b=>b.onclick=()=>openStockDetails(b.dataset.viewDetails));
+document.querySelectorAll('[data-edit-selected]').forEach(b=>b.onclick=()=>{const k=b.dataset.editSelected,p=carouselState[k].items[carouselState[k].index]?.phone;if(p)openPhoneEditor(k,p.id??p._id)});
+window.refreshPhoneCarousel=refreshPhoneCarousel;
+['iphone','android'].forEach(k=>{if(state.items[k]?.length)refreshPhoneCarousel(k);else paintCarousel(k)});
 </script>
 </body>
 </html>
